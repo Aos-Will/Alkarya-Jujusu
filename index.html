@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#791f2b" />
-  <title>Alkarya Metropolitan School of Jujutsu — Directorio Estudiantil</title>
+  <title>Alkarya Metropolitan School of Jujutsu — Directorio Académico</title>
   <style>
     :root{
       --ink:#1c1a19;
@@ -137,12 +137,145 @@
     .overall{margin-top:20px;background:#191717;color:#f7eee4;padding:16px 18px;display:flex;justify-content:space-between;align-items:center}
     .overall small{font-family:ui-sans-serif,system-ui;text-transform:uppercase;letter-spacing:.1em;color:#cfc2b6}.overall b{font-size:30px}
     .flowers{font-size:18px;letter-spacing:8px;color:#837562;margin-top:12px}
-    @media(max-width:900px){.students{grid-template-columns:repeat(2,1fr)}header{grid-template-columns:auto 1fr}.term-card{display:none}}
-    @media(max-width:620px){.students{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.filters{justify-content:flex-start}.school-title .en{letter-spacing:.08em}.seal{width:70px;height:70px}.score-row{grid-template-columns:1fr 80px 35px}.score-row .label{font-size:12px}.academic-row{grid-template-columns:1fr 1fr}.hero{padding:22px}.sheet-head,.sheet-body{padding-left:20px;padding-right:20px}}
+    .topbar-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .login-trigger{border:1px solid rgba(255,255,255,.28);background:transparent;color:#f2ece4;padding:6px 10px;border-radius:3px;cursor:pointer;text-transform:uppercase;letter-spacing:.08em;font-size:11px}
+    .login-trigger:hover{background:#f2ece4;color:#181616}
+    .session-label{opacity:.82}
+    .login-sheet{width:min(460px,100%);background:var(--panel);border-top:6px solid var(--red);box-shadow:0 25px 80px rgba(0,0,0,.38)}
+    .login-body{padding:26px 30px 30px}
+    .login-body h2{margin:0 0 6px;font-size:28px}
+    .login-body p{margin:0 0 20px;color:var(--muted);font-family:ui-sans-serif,system-ui;font-size:13px;line-height:1.5}
+    .login-field{display:grid;gap:6px;margin-top:14px;font-family:ui-sans-serif,system-ui}
+    .login-field label{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:700}
+    .login-field input{width:100%;border:1px solid var(--line);background:#fff;padding:11px 12px;border-radius:3px;outline:none}
+    .login-field input:focus{border-color:var(--red);box-shadow:0 0 0 2px rgba(121,31,43,.08)}
+    .login-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
+    .login-actions button{padding:9px 13px;border-radius:3px;cursor:pointer;border:1px solid var(--line);background:var(--panel)}
+    .login-actions .primary{background:var(--red);color:#fff;border-color:var(--red)}
+    .login-error{min-height:18px;margin-top:10px;color:#8b1d2a;font-family:ui-sans-serif,system-ui;font-size:12px}
+    .account-banner{display:none;margin:0 0 18px;padding:14px 16px;border:1px solid var(--line);background:rgba(255,253,248,.88);font-family:ui-sans-serif,system-ui;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+    .account-banner.show{display:flex}
+    .account-banner strong{color:var(--red)}
+    .account-banner button{border:0;background:none;color:var(--red);cursor:pointer;text-decoration:underline;font-size:12px}
+    .directory-view{display:none}
+    .directory-view.active{display:block}
+    .faculty-intro{margin-bottom:22px}
+    .faculty-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .faculty-card{background:rgba(255,253,248,.95);border:1px solid var(--line);border-top:4px solid var(--gold);padding:19px;cursor:pointer;transition:.18s transform,.18s box-shadow;box-shadow:0 6px 16px rgba(42,31,24,.06);border-radius:3px;min-height:225px;display:flex;flex-direction:column}
+    .faculty-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .faculty-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .faculty-card h3{margin:0;font-size:20px}
+    .faculty-subject{font-family:ui-sans-serif,system-ui;color:var(--red);font-size:12px;font-weight:700;margin-top:6px}
+    .faculty-meta{font-family:ui-sans-serif,system-ui;color:var(--muted);font-size:11px;line-height:1.5;margin-top:8px}
+    .faculty-status{font-family:ui-sans-serif,system-ui;font-size:10px;text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--line);padding:5px 7px;border-radius:999px;color:var(--muted);white-space:nowrap}
+    .faculty-status.away{border-color:rgba(167,132,69,.55);color:#806328;background:rgba(167,132,69,.08)}
+    .faculty-summary{font-size:13px;line-height:1.55;color:#4e4842;margin:16px 0 18px;flex:1}
+    .faculty-open{border-top:1px solid var(--line);padding-top:12px;font-family:ui-sans-serif,system-ui;font-size:12px;color:var(--muted);text-align:right}
+    .faculty-sheet{width:min(830px,100%);max-height:90vh;overflow:auto;background:var(--panel);border-top:6px solid var(--gold);box-shadow:0 25px 80px rgba(0,0,0,.38)}
+    .faculty-body{padding:24px 30px 30px}
+    .faculty-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+    .faculty-fact{background:var(--paper);border:1px solid var(--line);padding:12px}
+    .faculty-fact small{display:block;font-family:ui-sans-serif,system-ui;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+    .faculty-fact strong{font-size:15px}
+    .bio-text{line-height:1.7;color:#3f3a35;margin:0}
+    .faculty-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+    .faculty-tag{font-family:ui-sans-serif,system-ui;font-size:11px;border:1px solid var(--line);background:var(--paper);padding:6px 8px;border-radius:2px;color:#56504a}
+    .redacted{background:#171515;color:#171515;padding:0 .25em;border-radius:1px;user-select:none}
+    .classified-note{margin-top:16px;padding:12px 14px;border-left:3px solid #171515;background:#eee9e0;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;line-height:1.6;color:#4d4944}
+    .faculty-note{margin:16px 0 0;font-family:ui-sans-serif,system-ui;font-size:11px;color:var(--muted)}
+    .rules-shell{display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:start;margin-top:22px}
+    .rules-index{position:sticky;top:18px;background:rgba(255,253,248,.95);border:1px solid var(--line);padding:18px;box-shadow:0 6px 16px rgba(42,31,24,.05)}
+    .rules-index h3{margin:0 0 12px;font-size:16px;color:var(--red)}
+    .rules-index a{display:block;color:var(--muted);text-decoration:none;font-family:ui-sans-serif,system-ui;font-size:12px;padding:7px 0;border-bottom:1px solid #ece5da}
+    .rules-index a:hover{color:var(--red)}
+    .rules-index .access-stamp{margin-top:16px;border:1px solid rgba(121,31,43,.3);padding:10px;font-family:ui-sans-serif,system-ui;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--red);background:#fffaf4}
+    .rules-content{display:grid;gap:16px}
+    .academics-hero{margin-bottom:22px}
+    .academics-lead{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;margin:20px 0 28px}
+    .academic-panel{background:rgba(255,253,248,.96);border:1px solid var(--line);padding:22px 24px;box-shadow:0 6px 16px rgba(42,31,24,.05);border-radius:3px}
+    .academic-panel h2{margin:0 0 8px;font-size:23px}
+    .academic-panel p{margin:0;color:#4e4842;line-height:1.65}
+    .faculty-start{border-top:4px solid var(--gold)}
+    .faculty-start strong{color:var(--red)}
+    .institution-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 28px}
+    .institution-fact{background:var(--paper);border:1px solid var(--line);padding:13px 14px}
+    .institution-fact small{display:block;font-family:ui-sans-serif,system-ui;font-size:9px;text-transform:uppercase;letter-spacing:.11em;color:var(--muted);margin-bottom:5px}
+    .institution-fact strong{font-size:15px;color:var(--ink)}
+    .facilities-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+    .facility-row{display:grid;grid-template-columns:auto 1fr;gap:12px;background:var(--panel);border:1px solid var(--line);padding:15px}
+    .facility-icon{width:34px;height:34px;border:1px solid var(--gold);display:grid;place-items:center;color:#806328;font-weight:bold;font-size:15px;background:rgba(167,132,69,.07)}
+    .facility-row h3{margin:0 0 4px;font-size:16px}
+    .facility-row p{margin:0;color:#5a534c;font-size:11px;line-height:1.5}
+    .facility-row span{display:block;margin-top:6px;font-family:ui-sans-serif,system-ui;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    .campus-heading{margin:32px 0 14px}
+    .campus-heading h2{margin:0 0 6px;font-size:26px}
+    .campus-heading p{margin:0;color:var(--muted);line-height:1.6}
+    .campus-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
+    .campus-card{margin:0;background:var(--panel);border:1px solid var(--line);box-shadow:0 7px 18px rgba(42,31,24,.07);overflow:hidden;border-radius:3px}
+    .campus-card.wide{grid-column:1/-1}
+    .campus-visual{height:245px;position:relative;background:linear-gradient(145deg,#ddd3c4,#b9aa95);overflow:hidden}
+    .campus-card.wide .campus-visual{height:310px}
+    .campus-visual img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:2}
+    .campus-visual .image-placeholder{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;color:#6a5e51;font-family:ui-sans-serif,system-ui;font-size:12px;line-height:1.55;letter-spacing:.04em}
+    .campus-visual .image-placeholder b{display:block;color:var(--red);font-family:Georgia,serif;font-size:28px;letter-spacing:0;margin-bottom:7px}
+    .campus-card figcaption{padding:17px 18px 19px}
+    .campus-card h3{margin:0 0 7px;font-size:20px}
+    .campus-card p{margin:0;color:#514b45;line-height:1.58;font-size:13px}
+    .campus-card .campus-meta{display:block;margin-top:10px;font-family:ui-sans-serif,system-ui;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+    .program-heading{margin:36px 0 14px}
+    .program-heading h2{margin:0 0 6px;font-size:26px}
+    .program-heading p{margin:0;color:var(--muted);line-height:1.6}
+    .program-years{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+    .year-card{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--red);padding:17px 15px;min-height:190px}
+    .year-card.faculty-year{border-top-color:var(--gold);background:linear-gradient(180deg,rgba(167,132,69,.08),var(--panel) 35%)}
+    .year-card .year-num{font-family:ui-sans-serif,system-ui;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+    .year-card h3{margin:6px 0 9px;font-size:19px}
+    .year-card p{margin:0;color:#514b45;line-height:1.55;font-size:12px}
+    .year-card .faculty-mark{display:inline-block;margin-top:10px;font-family:ui-sans-serif,system-ui;font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:#806328;border:1px solid rgba(167,132,69,.55);padding:4px 6px}
+    .departments-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
+    .department-card{background:var(--panel);border:1px solid var(--line);padding:20px;border-left:4px solid var(--gold)}
+    .department-card h3{margin:0 0 5px;font-size:20px}
+    .department-card .department-owner{font-family:ui-sans-serif,system-ui;font-size:11px;color:var(--red);font-weight:700;margin-bottom:12px}
+    .department-card p{margin:0 0 12px;color:#514b45;font-size:13px;line-height:1.55}
+    .department-tags{display:flex;flex-wrap:wrap;gap:6px}
+    .department-tags span{font-family:ui-sans-serif,system-ui;font-size:10px;background:var(--paper);border:1px solid var(--line);padding:5px 7px;color:#5a534c}
+    .specialization-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+    .specialization{background:#1b1918;color:#f3e9df;padding:18px;border-top:4px solid var(--gold);min-height:155px}
+    .specialization h3{margin:0 0 8px;font-size:18px;color:#fff7ec}
+    .specialization p{margin:0;color:#cfc2b6;line-height:1.55;font-size:12px}
+    .evaluation-box{margin-top:32px;background:rgba(255,253,248,.96);border:1px solid var(--line);padding:22px 24px}
+    .evaluation-box h2{margin:0 0 8px;font-size:24px}
+    .evaluation-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:15px}
+    .evaluation-item{background:var(--paper);border:1px solid var(--line);padding:12px}
+    .evaluation-item b{display:block;color:var(--red);font-size:13px;margin-bottom:5px}
+    .evaluation-item span{font-family:ui-sans-serif,system-ui;font-size:10px;line-height:1.45;color:var(--muted)}
+    .faculty-disclaimer{margin-top:14px;font-family:ui-sans-serif,system-ui;font-size:11px;color:var(--muted);line-height:1.5}
+    .rule-section{background:rgba(255,253,248,.96);border:1px solid var(--line);border-top:4px solid var(--red);padding:22px 24px;box-shadow:0 6px 16px rgba(42,31,24,.05)}
+    .rule-section h2{margin:0 0 6px;font-size:22px}
+    .rule-section .rule-kicker{font-family:ui-sans-serif,system-ui;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--red);font-weight:700}
+    .rule-section p{line-height:1.65;color:#49433e}
+    .rule-list{margin:14px 0 0;padding:0;list-style:none;counter-reset:rule}
+    .rule-list li{counter-increment:rule;position:relative;padding:12px 12px 12px 48px;border-top:1px solid #e7dfd4;line-height:1.58;color:#3f3a35}
+    .rule-list li:before{content:counter(rule, decimal-leading-zero);position:absolute;left:5px;top:12px;font-family:ui-sans-serif,system-ui;font-size:11px;color:var(--red);font-weight:800;letter-spacing:.06em}
+    .rule-list strong{color:#2c2724}
+    .principle-box{margin-top:18px;background:#191717;color:#eee7dc;padding:18px 20px;border-left:5px solid var(--gold);line-height:1.65}
+    .principle-box b{color:#fff}
+    .restricted-badge{display:inline-flex;gap:7px;align-items:center;font-family:ui-sans-serif,system-ui;font-size:11px;background:#181616;color:#f5eee5;padding:7px 10px;border-radius:2px;margin-top:12px}
+    .locked-placeholder{margin-top:22px;padding:40px 28px;text-align:center;border:1px dashed var(--line);background:rgba(255,253,248,.75)}
+    .locked-placeholder h2{margin:0 0 8px}.locked-placeholder p{color:var(--muted);font-family:ui-sans-serif,system-ui;font-size:13px;line-height:1.6}
+    .locked-placeholder button{margin-top:12px;border:0;background:var(--red);color:#fff;padding:10px 14px;border-radius:3px;cursor:pointer}
+    @media(max-width:900px){.students,.faculty-grid{grid-template-columns:repeat(2,1fr)}header{grid-template-columns:auto 1fr}.term-card{display:none}.faculty-facts{grid-template-columns:repeat(2,1fr)}.rules-shell{grid-template-columns:1fr}.rules-index{position:static}.rules-index a{display:inline-block;margin-right:12px}.academics-lead{grid-template-columns:1fr}.program-years{grid-template-columns:repeat(2,1fr)}.departments-grid{grid-template-columns:1fr}.specialization-grid{grid-template-columns:repeat(2,1fr)}.evaluation-grid{grid-template-columns:repeat(2,1fr)}.institution-facts{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){.students,.faculty-grid{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.filters{justify-content:flex-start}.school-title .en{letter-spacing:.08em}.seal{width:70px;height:70px}.score-row{grid-template-columns:1fr 80px 35px}.score-row .label{font-size:12px}.academic-row{grid-template-columns:1fr 1fr}.hero{padding:22px}.sheet-head,.sheet-body{padding-left:20px;padding-right:20px}.campus-gallery,.program-years,.specialization-grid,.evaluation-grid,.institution-facts,.facilities-list{grid-template-columns:1fr}.campus-card.wide{grid-column:auto}.campus-visual,.campus-card.wide .campus-visual{height:220px}}
   </style>
 </head>
 <body>
-  <div class="topbar"><span>Portal Académico Oficial</span><span>Registro Estudiantil · Acceso Público</span></div>
+  <div class="topbar">
+    <div class="topbar-left">
+      <button class="login-trigger" id="loginTrigger" type="button">Acceso de estudiante</button>
+      <span class="session-label" id="sessionLabel">Portal Académico Oficial</span>
+    </div>
+    <span>Registro Estudiantil · Acceso Público</span>
+  </div>
   <header>
     <div class="seal"><span>呪</span></div>
     <div class="school-title">
@@ -150,16 +283,22 @@
       <div class="en">Alkarya Metropolitan School of Jujutsu</div>
       <div class="sub">Escuela Metropolitana de Hechicería de Alkarya</div>
     </div>
-    <div class="term-card"><b>Ciclo académico</b><span>2026 · Segundo periodo</span><b style="margin-top:10px">Departamento</b><span>Registro estudiantil</span></div>
+    <div class="term-card"><b>Ciclo académico</b><span>Año 2 DDC · Segundo periodo</span><b style="margin-top:10px">Departamento</b><span>Registro estudiantil</span></div>
   </header>
-  <nav><div class="inner"><a href="#">Inicio</a><a class="active" href="#directorio">Estudiantes</a><a href="#">Facultad</a><a href="#">Reglamento</a><a href="#">Archivo de misiones</a></div></nav>
+  <nav><div class="inner"><a href="#">Inicio</a><a class="active" data-view="directorio" href="#directorio">Estudiantes</a><a data-view="profesores" href="#profesores">Profesores</a><a data-view="facultad" data-protected="true" href="#facultad">Facultad</a><a data-view="reglamento" data-protected="true" href="#reglamento">Reglamento</a><a href="#">Archivo de misiones</a></div></nav>
 
-  <main id="directorio">
+  <main>
+    <section id="directorio" class="directory-view active">
     <section class="hero">
       <h1>Directorio de estudiantes</h1>
       <p>Consulta pública de alumnos actualmente registrados en la Escuela Metropolitana de Hechicería de Alkarya. Las calificaciones reflejan la evaluación interna del ciclo en curso.</p>
       <div class="notice">Los expedientes personales, técnicas malditas y registros disciplinarios permanecen restringidos.</div>
     </section>
+
+    <div class="account-banner" id="accountBanner">
+      <span>Sesión activa: <strong id="accountName"></strong> · Cuenta estudiantil</span>
+      <button id="logoutBtn" type="button">Cerrar sesión</button>
+    </div>
 
     <section class="toolbar">
       <div class="search"><input id="search" type="search" placeholder="Buscar estudiante por nombre o clan…" aria-label="Buscar estudiante"></div>
@@ -169,13 +308,311 @@
         <button class="filter" data-filter="2">2.º año</button>
         <button class="filter" data-filter="3">3.er año</button>
         <button class="filter" data-filter="4">4.º año</button>
+        <button class="filter" data-filter="5">5.º año</button>
       </div>
     </section>
     <div class="stats" id="stats"></div>
     <section class="students" id="students"></section>
+    </section>
+
+    <section id="profesores" class="directory-view">
+      <section class="hero faculty-intro">
+        <h1>Directorio de profesores</h1>
+        <p>Personal docente acreditado por la Escuela Metropolitana de Hechicería de Alkarya. Los perfiles públicos reúnen asignaturas, especialidades, historial institucional y situación de servicio.</p>
+        <div class="notice">Ciertos antecedentes operativos, técnicas y asignaciones permanecen restringidos por disposición de los Altos Mandos.</div>
+      </section>
+      <div class="stats" id="facultyStats"></div>
+      <section class="faculty-grid" id="facultyGrid"></section>
+    </section>
+
+
+    <section id="facultad" class="directory-view">
+      <section class="hero academics-hero">
+        <h1>Facultad y programa académico</h1>
+        <p>La formación de Alkarya combina educación general, teoría de hechicería, investigación, entrenamiento supervisado y especialización profesional dentro de un campus integrado a la montaña y sus áreas naturales.</p>
+        <div class="notice">Portal interno · Esta sección requiere una sesión estudiantil activa.</div>
+      </section>
+
+      <div class="academics-lead">
+        <article class="academic-panel">
+          <h2>Formación de cinco años</h2>
+          <p>Los primeros tres años forman una base común. Todo estudiante estudia control de Energía Maldita, teoría, combate, ciencias, humanidades, sistemas, medicina básica y procedimientos de campo antes de elegir una ruta académica. La escuela considera que una técnica poderosa no reemplaza una educación amplia ni la capacidad de comprender información, personas y riesgos.</p>
+        </article>
+        <article class="academic-panel faculty-start">
+          <h2>Ingreso a Facultad</h2>
+          <p><strong>La Facultad comienza al iniciar 4.º año.</strong> Desde ese momento el alumno elige una especialización principal, conserva materias comunes y comienza a trabajar de forma más cercana con departamentos, laboratorios, docentes y proyectos de campo. El 5.º año funciona como residencia avanzada y transición hacia el ejercicio profesional.</p>
+        </article>
+      </div>
+
+      <div class="institution-facts">
+        <div class="institution-fact"><small>Director académico</small><strong>Satoru Gojo</strong></div>
+        <div class="institution-fact"><small>Ciclo académico</small><strong>Año 2 DDC</strong></div>
+        <div class="institution-fact"><small>Programa</small><strong>Formación Superior de Hechicería</strong></div>
+        <div class="institution-fact"><small>Duración ordinaria</small><strong>5 años · Facultad desde 4.º</strong></div>
+      </div>
+
+      <div class="campus-heading">
+        <h2>Campus de Alkarya</h2>
+        <p>La escuela fue construida entre bosque, jardines y elevaciones naturales. Los edificios se distribuyen en conjuntos separados para evitar concentrar actividades peligrosas en una sola estructura y para conservar espacios tranquilos entre las áreas académicas.</p>
+      </div>
+
+      <div class="campus-gallery">
+        <figure class="campus-card wide">
+          <div class="campus-visual"><div class="image-placeholder"><div><b>Entrada principal</b>Imagen pendiente · images/entrada.jpg</div></div><img src="images/entrada.jpg" alt="Entrada principal de la Escuela Metropolitana de Hechicería de Alkarya" onerror="this.style.display='none'"></div>
+          <figcaption><h3>Entrada principal</h3><p>El acceso principal marca la transición entre el camino de montaña y el recinto académico. La entrada concentra los controles de visitantes, identificación estudiantil y las primeras capas de barreras del campus. Desde aquí parten senderos hacia los edificios docentes, residencias y áreas de entrenamiento.</p><span class="campus-meta">Acceso controlado · Recepción · Barreras perimetrales</span></figcaption>
+        </figure>
+
+        <figure class="campus-card">
+          <div class="campus-visual"><div class="image-placeholder"><div><b>Jardín central</b>Imagen pendiente · images/jardin.jpg</div></div><img src="images/jardin.jpg" alt="Jardín pequeño del campus con árbol florido" onerror="this.style.display='none'"></div>
+          <figcaption><h3>Jardín del árbol florido</h3><p>Un jardín pequeño sirve como punto de descanso entre clases. Su árbol de floración estacional es uno de los lugares más reconocibles del campus y suele utilizarse para lectura, reuniones breves y estudio al aire libre. Por norma institucional, no se realizan entrenamientos de combate dentro de este jardín.</p><span class="campus-meta">Zona tranquila · Estudio · Convivencia</span></figcaption>
+        </figure>
+
+        <figure class="campus-card">
+          <div class="campus-visual"><div class="image-placeholder"><div><b>Centro médico</b>Imagen pendiente · images/medico.jpg</div></div><img src="images/medico.jpg" alt="Edificio médico de la escuela visto desde el exterior" onerror="this.style.display='none'"></div>
+          <figcaption><h3>Centro Médico Ieiri</h3><p>Edificio independiente dedicado a atención clínica, recuperación posterior a misiones, prácticas de medicina y aislamiento de casos relacionados con contaminación maldita. Su ubicación permite recibir heridos sin atravesar los edificios académicos principales.</p><span class="campus-meta">Urgencias · Recuperación · Medicina maldita</span></figcaption>
+        </figure>
+
+        <figure class="campus-card wide">
+          <div class="campus-visual"><div class="image-placeholder"><div><b>Campo de entrenamiento</b>Imagen pendiente · images/entrenamiento.jpg</div></div><img src="images/entrenamiento.jpg" alt="Campo abierto de entrenamiento de la escuela" onerror="this.style.display='none'"></div>
+          <figcaption><h3>Campo abierto de entrenamiento</h3><p>Una amplia zona exterior rodeada de terreno natural y preparada para ejercicios físicos, combate, maniobras grupales y pruebas de técnicas. El campo puede dividirse mediante barreras temporales para aislar prácticas de distinta intensidad. Los ejercicios capaces de afectar grandes áreas requieren autorización y supervisión.</p><span class="campus-meta">Combate · Barreras móviles · Prácticas de campo</span></figcaption>
+        </figure>
+
+        <figure class="campus-card">
+          <div class="campus-visual"><div class="image-placeholder"><div><b>Comedor</b>Imagen pendiente · images/comedor.jpg</div></div><img src="images/comedor.jpg" alt="Comedor grande de la escuela con quince mesas" onerror="this.style.display='none'"></div>
+          <figcaption><h3>Comedor principal</h3><p>El comedor dispone de quince mesas grandes y funciona como uno de los principales puntos de convivencia del alumnado. Atiende a estudiantes, docentes y personal durante el horario académico, con zonas suficientemente amplias para equipos que regresan juntos de entrenamiento o misión.</p><span class="campus-meta">15 mesas · Servicio diario · Área común</span></figcaption>
+        </figure>
+
+        <figure class="campus-card">
+          <div class="campus-visual"><div class="image-placeholder"><div><b>Aula</b>Imagen pendiente · images/aula.jpg</div></div><img src="images/aula.jpg" alt="Salón de clases de la escuela" onerror="this.style.display='none'"></div>
+          <figcaption><h3>Salones de clase</h3><p>Las aulas combinan enseñanza convencional con recursos preparados para teoría de hechicería, sistemas, historia, matemáticas y análisis de misiones. Su distribución es deliberadamente sencilla: la mayor parte del entrenamiento peligroso se mantiene fuera de los edificios docentes.</p><span class="campus-meta">Clases teóricas · Sistemas · Seminarios</span></figcaption>
+        </figure>
+
+        <figure class="campus-card wide">
+          <div class="campus-visual"><div class="image-placeholder"><div><b>Residencias</b>Imagen pendiente · images/residencias.jpg</div></div><img src="images/residencias.jpg" alt="Habitaciones y residencias de estudiantes de Alkarya" onerror="this.style.display='none'"></div>
+          <figcaption><h3>Residencias estudiantiles</h3><p>Los dormitorios se encuentran apartados de los campos de entrenamiento y de los almacenes de objetos malditos. Cada zona residencial está pensada como espacio de descanso y vida cotidiana, con senderos que conectan las habitaciones con comedor, aulas y jardines sin obligar a atravesar áreas operativas.</p><span class="campus-meta">Alojamiento · Áreas de descanso · Acceso estudiantil</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="program-heading">
+        <h2>Programa de estudios</h2>
+        <p>El avance académico aumenta gradualmente la independencia del estudiante. El grado operativo de un hechicero y su año escolar son sistemas distintos.</p>
+      </div>
+      <div class="program-years">
+        <article class="year-card"><span class="year-num">1.er año</span><h3>Fundamentos</h3><p>Control inicial de Energía Maldita, condición física, fundamentos de combate, matemáticas, historia, sistemas, primeros auxilios y comprensión básica de maldiciones.</p></article>
+        <article class="year-card"><span class="year-num">2.º año</span><h3>Aplicación</h3><p>Técnicas en situaciones prácticas, barreras básicas, trabajo cooperativo, investigación, psicología, análisis de incidentes y primeras actividades supervisadas.</p></article>
+        <article class="year-card"><span class="year-num">3.er año</span><h3>Consolidación</h3><p>Perfeccionamiento técnico, misiones con mayor autonomía, objetos malditos, táctica avanzada, teoría de dominios y preparación para seleccionar una especialización.</p></article>
+        <article class="year-card faculty-year"><span class="year-num">4.º año</span><h3>Ingreso a Facultad</h3><p>Elección de especialización, materias departamentales, investigación aplicada, operaciones complejas, liderazgo y trabajo directo con profesores responsables.</p><span class="faculty-mark">Inicio de Facultad</span></article>
+        <article class="year-card faculty-year"><span class="year-num">5.º año</span><h3>Residencia Superior</h3><p>Prácticas profesionales, investigación, misiones de campo, tutoría de alumnos menores, proyecto final y preparación para trabajar de manera independiente.</p><span class="faculty-mark">Formación profesional</span></article>
+      </div>
+
+      <div class="program-heading">
+        <h2>Departamentos académicos</h2>
+        <p>Los departamentos coordinan materias, investigación e instalaciones. A partir de 4.º año también reciben estudiantes de Facultad para formación especializada.</p>
+      </div>
+      <div class="departments-grid">
+        <article class="department-card"><h3>Estudios Malditos y Arcanos</h3><div class="department-owner">Coordinación: Satoru Gojo</div><p>Estudia la estructura de la hechicería y su relación con otros sistemas sobrenaturales presentes en Alkarya.</p><div class="department-tags"><span>Energía Maldita</span><span>Maldiciones</span><span>Técnicas</span><span>Barreras</span><span>Velos</span><span>Dominios</span><span>Magia arcana</span><span>Objetos malditos</span></div></article>
+        <article class="department-card"><h3>Combate y Operaciones</h3><div class="department-owner">Docentes asociados: Quanxi, Kishibe, Camila Fujiwara y Kensuke Nagino</div><p>Forma en supervivencia, combate, rescate, lectura del terreno, contención y coordinación de equipos. La preparación operativa no constituye formación militar.</p><div class="department-tags"><span>Artes marciales</span><span>Táctica</span><span>Supervivencia</span><span>Evacuación</span><span>Contención</span><span>Evaluación de amenazas</span></div></article>
+        <article class="department-card"><h3>Ciencias Malditas y Cognición</h3><div class="department-owner">Coordinación: Masamichi Yaga</div><p>Investiga mente, alma, identidad, cuerpos malditos, núcleos autónomos y las consecuencias éticas de modificar o crear formas de consciencia.</p><div class="department-tags"><span>Cognición</span><span>Cuerpos malditos</span><span>Almas</span><span>Núcleos</span><span>Posesión</span><span>Investigación experimental</span></div></article>
+        <article class="department-card"><h3>Medicina y Recuperación</h3><div class="department-owner">Coordinación: Shoko Ieiri</div><p>Combina medicina general y conocimientos sobrenaturales para atender heridas, contaminación, trauma y recuperación posterior a actividades de campo.</p><div class="department-tags"><span>Anatomía</span><span>Primeros auxilios</span><span>Trauma</span><span>Técnica Maldita Invertida</span><span>Recuperación</span></div></article>
+        <article class="department-card"><h3>Ciencias Exactas y Gestión</h3><div class="department-owner">Coordinación: Kento Nanami</div><p>Busca que los hechiceros puedan trabajar con cantidades, presupuestos, probabilidades, riesgos y recursos con la misma seriedad que aplican a sus técnicas.</p><div class="department-tags"><span>Matemáticas</span><span>Álgebra</span><span>Estadística</span><span>Economía básica</span><span>Análisis de riesgo</span><span>Gestión</span></div></article>
+        <article class="department-card"><h3>Humanidades y Conducta</h3><div class="department-owner">Docentes asociados: Utahime Iori y Kishibe</div><p>Estudia la responsabilidad del hechicero, la conducta humana y las decisiones que aparecen cuando poder, deber, miedo y relaciones personales entran en conflicto.</p><div class="department-tags"><span>Psicología</span><span>Ética</span><span>Filosofía</span><span>Estrés</span><span>Trabajo en equipo</span><span>Resolución de conflictos</span></div></article>
+        <article class="department-card"><h3>Historia, Información y Sistemas</h3><div class="department-owner">Coordinación: Yu Haibara</div><p>Conecta el estudio histórico con métodos modernos para localizar, organizar, verificar y proteger información útil dentro y fuera de una misión.</p><div class="department-tags"><span>Historia de la hechicería</span><span>Historia de Alkarya</span><span>Clanes</span><span>Informática</span><span>Bases de datos</span><span>Investigación</span><span>Fuentes</span><span>Seguridad de información</span></div></article>
+      </div>
+
+      <div class="program-heading">
+        <h2>Instalaciones académicas especializadas</h2>
+        <p>Además de los espacios generales del campus, ciertos edificios y salas están reservados para investigación, entrenamiento técnico y manejo de materiales sensibles.</p>
+      </div>
+      <div class="facilities-list">
+        <article class="facility-row"><div class="facility-icon">文</div><div><h3>Biblioteca Central de Alkarya</h3><p>Fondos históricos, tratados académicos, registros institucionales y copias autorizadas de documentación de campo.</p><span>Consulta general · Secciones restringidas</span></div></article>
+        <article class="facility-row"><div class="facility-icon">呪</div><div><h3>Laboratorio de Energía Maldita</h3><p>Medición de residuos, análisis de propiedades energéticas y estudio controlado de materiales relacionados con técnicas y maldiciones.</p><span>Autorización docente requerida</span></div></article>
+        <article class="facility-row"><div class="facility-icon">⌘</div><div><h3>Centro de Sistemas e Investigación Haibara</h3><p>Equipos informáticos, bases de datos, herramientas de investigación, recuperación de información y análisis documental.</p><span>Uso académico · Seguridad de información</span></div></article>
+        <article class="facility-row"><div class="facility-icon">界</div><div><h3>Salas de Barreras</h3><p>Espacios reforzados para practicar velos, estructuras de contención y fundamentos de barreras sin interferir con el resto del campus.</p><span>Práctica supervisada</span></div></article>
+        <article class="facility-row"><div class="facility-icon">封</div><div><h3>Archivo de Objetos Malditos</h3><p>Depósito de piezas registradas, contenedores sellados y objetos destinados a estudio o custodia institucional.</p><span>Acceso restringido · Registro obligatorio</span></div></article>
+        <article class="facility-row"><div class="facility-icon">心</div><div><h3>Laboratorio Cognitivo Yaga</h3><p>Área de investigación sobre cognición, cuerpos malditos, núcleos autónomos, memoria y fenómenos relacionados con identidad.</p><span>Investigación especializada</span></div></article>
+        <article class="facility-row"><div class="facility-icon">武</div><div><h3>Dojo de Combate</h3><p>Sala cubierta para técnica corporal, armas de práctica y ejercicios que requieren un entorno más controlado que el campo exterior.</p><span>Entrenamiento · Artes marciales</span></div></article>
+        <article class="facility-row"><div class="facility-icon">転</div><div><h3>Zona de Teletransportación</h3><p>Área de llegada y salida para desplazamientos mágicos autorizados, conectada a barreras de identificación y protocolos de seguridad para evitar accesos no registrados.</p><span>Acceso controlado · Autorización de tránsito</span></div></article>
+        <article class="facility-row"><div class="facility-icon">獣</div><div><h3>Centro de Entrenamiento con Criaturas Simuladas</h3><p>Complejo de prácticas patrocinado por Balkmer que reproduce enfrentamientos contra criaturas y amenazas de distintos comportamientos dentro de escenarios controlados. Permite entrenar coordinación, rescate y toma de decisiones sin recurrir a entidades reales.</p><span>Patrocinio: Balkmer · Entrenamiento supervisado</span></div></article>
+        <article class="facility-row"><div class="facility-icon">療</div><div><h3>Centro de Tratamiento de Heridas Graves y Enfermedades</h3><p>Unidad clínica especializada para traumatismos severos, afecciones complejas, contaminación maldita y enfermedades que requieren observación prolongada o intervención médica avanzada.</p><span>Atención especializada · Acceso médico restringido</span></div></article>
+      </div>
+
+      <div class="program-heading">
+        <h2>Especializaciones de Facultad</h2>
+        <p>La elección se realiza al comenzar 4.º año. Una especialización orienta la formación avanzada, pero no determina de manera permanente la profesión futura del estudiante.</p>
+      </div>
+      <div class="specialization-grid">
+        <article class="specialization"><h3>Operaciones de Campo</h3><p>Combate, rescate, supervivencia, coordinación de equipos y respuesta a amenazas malditas.</p></article>
+        <article class="specialization"><h3>Investigación Maldita</h3><p>Estudio de técnicas, entidades, objetos, anomalías y nuevos fenómenos sobrenaturales.</p></article>
+        <article class="specialization"><h3>Barreras y Sellado</h3><p>Velos, barreras, contención, dominios, seguridad de instalaciones y estructuras de sellado.</p></article>
+        <article class="specialization"><h3>Medicina Maldita</h3><p>Curación, estabilización, anatomía, recuperación y aplicación clínica de Energía Maldita.</p></article>
+        <article class="specialization"><h3>Inteligencia e Información</h3><p>Investigación, sistemas, archivos, análisis de fuentes, seguridad de información y apoyo a operaciones.</p></article>
+        <article class="specialization"><h3>Protección Pública</h3><p>Evacuación, prevención, seguridad civil y respuesta organizada sin convertir al hechicero en personal militar.</p></article>
+        <article class="specialization"><h3>Docencia e Investigación Académica</h3><p>Preparación para enseñanza, tutoría, documentación técnica, laboratorios y desarrollo de conocimiento institucional.</p></article>
+      </div>
+
+      <div class="evaluation-box">
+        <h2>Evaluación académica</h2>
+        <p>Las cinco áreas visibles en el expediente estudiantil representan criterios internos de formación y no sustituyen la clasificación operativa por grado.</p>
+        <div class="evaluation-grid">
+          <div class="evaluation-item"><b>Combate</b><span>Capacidad práctica en situaciones hostiles y control de enfrentamientos.</span></div>
+          <div class="evaluation-item"><b>Control de Energía Maldita</b><span>Precisión, eficiencia, estabilidad y administración de energía.</span></div>
+          <div class="evaluation-item"><b>Teoría Maldita</b><span>Comprensión de hechicería, fenómenos sobrenaturales y fundamentos técnicos.</span></div>
+          <div class="evaluation-item"><b>Trabajo en Equipo</b><span>Coordinación, comunicación, disciplina compartida y apoyo a compañeros.</span></div>
+          <div class="evaluation-item"><b>Misiones</b><span>Rendimiento general durante actividades prácticas y operaciones autorizadas.</span></div>
+        </div>
+        <div class="faculty-disclaimer">El grado de un hechicero constituye una clasificación independiente. Un expediente académico alto no produce automáticamente un ascenso de grado, y una clasificación elevada no exime de las obligaciones académicas.</div>
+      </div>
+    </section>
+
+
+    <section id="reglamento" class="directory-view">
+      <section class="hero">
+        <h1>Reglamento interno del alumnado</h1>
+        <p>Normativa académica, de seguridad y conducta aplicable a estudiantes de la Escuela Metropolitana de Hechicería de Alkarya.</p>
+        <div class="notice">Documento interno · El acceso requiere una sesión estudiantil activa.</div>
+      </section>
+
+      <div class="locked-placeholder" id="rulesLocked">
+        <h2>Documento de acceso restringido</h2>
+        <p>El reglamento completo forma parte del portal interno de estudiantes. Inicia sesión con un nombre registrado para consultar el documento.</p>
+        <button type="button" id="rulesLoginBtn">Iniciar sesión para continuar</button>
+      </div>
+
+      <div id="rulesDocument" hidden>
+        <div class="rules-shell">
+          <aside class="rules-index">
+            <h3>Índice</h3>
+            <a href="#regla-principios">I. Principios institucionales</a>
+            <a href="#regla-secreto">II. Confidencialidad y acceso</a>
+            <a href="#regla-entrenamiento">III. Entrenamiento y barreras</a>
+            <a href="#regla-artefactos">IV. Objetos y artefactos malditos</a>
+            <a href="#regla-misiones">V. Misiones y actividad exterior</a>
+            <a href="#regla-conducta">VI. Conducta y convivencia</a>
+            <a href="#regla-academico">VII. Responsabilidad académica</a>
+            <a href="#regla-emergencias">VIII. Emergencias e incidentes</a>
+            <a href="#regla-disciplina">IX. Medidas disciplinarias</a>
+            <div class="access-stamp">Portal interno · Año 2 DDC<br>Consulta estudiantil autorizada</div>
+          </aside>
+
+          <div class="rules-content">
+            <section class="rule-section" id="regla-principios">
+              <div class="rule-kicker">Título I</div>
+              <h2>Principios institucionales</h2>
+              <p>La escuela forma hechiceros capaces de ejercer criterio propio. La fuerza de un estudiante constituye una responsabilidad personal antes que un recurso institucional.</p>
+              <div class="principle-box"><b>Principio de autonomía.</b> Ningún alumno será formado con el propósito de convertirse en una herramienta de guerra. La escuela espera que cada hechicero comprenda el alcance de su poder y asuma las consecuencias de decidir cuándo, cómo y para quién utilizarlo.</div>
+              <ol class="rule-list">
+                <li><strong>Prohibición de instrumentalización militar.</strong> Los estudiantes no deberán incorporarse a fuerzas cuyo propósito sea tratarlos como armas, peones o recursos desechables. La pertenencia a Seguridad Pública, servicios de protección u organizaciones civiles no está prohibida, pero cada alumno debe evaluar con cuidado sus obligaciones, cadenas de mando y derecho a retirarse.</li>
+                <li><strong>Responsabilidad individual.</strong> El uso de una técnica, objeto maldito o capacidad extraordinaria será atribuido a quien decidió emplearlo. Una orden externa no elimina la responsabilidad personal por daños deliberados o negligencia grave.</li>
+                <li><strong>Servicio a las personas.</strong> Ayudar al bien común no constituye obediencia ciega ni una obligación de sacrificio. Sin embargo, se espera que los estudiantes empleen su formación para proteger vidas, reducir sufrimiento y asistir a otros cuando resulte razonablemente posible.</li>
+                <li><strong>Derecho a rechazar.</strong> Un estudiante puede objetar una misión, entrenamiento o instrucción que considere manifiestamente suicida, ilegal o incompatible con sus límites personales. La negativa deberá ser comunicada a un profesor o responsable de misión para su revisión.</li>
+              </ol>
+            </section>
+
+            <section class="rule-section" id="regla-secreto">
+              <div class="rule-kicker">Título II</div>
+              <h2>Confidencialidad, ingreso y naturaleza de la escuela</h2>
+              <p>La existencia operativa del campus, sus accesos y sus sistemas de contención requieren discreción. Esta norma fue reforzada después de incidentes de ingreso no autorizado.</p>
+              <ol class="rule-list">
+                <li><strong>Acceso reservado.</strong> Está prohibido revelar a personas no autorizadas, no hechiceros o criaturas externas el método exacto para localizar, atravesar o ingresar a la escuela.</li>
+                <li><strong>No transportar entidades al campus.</strong> Ningún estudiante podrá introducir maldiciones, familiares no registrados, entidades hostiles, cuerpos poseídos o criaturas potencialmente peligrosas sin autorización previa de un profesor responsable.</li>
+                <li><strong>Información sensible.</strong> Rutas de barrera, puntos ciegos, claves, sellos, horarios de vigilancia, almacenes de objetos malditos y expedientes restringidos no deberán ser copiados ni compartidos fuera de los canales académicos autorizados.</li>
+                <li><strong>Invitados.</strong> Toda visita de una persona externa deberá ser declarada. El estudiante anfitrión será responsable de acompañarla mientras permanezca en zonas de acceso controlado.</li>
+              </ol>
+              <span class="restricted-badge">▣ Acceso y barreras · Información interna</span>
+            </section>
+
+            <section class="rule-section" id="regla-entrenamiento">
+              <div class="rule-kicker">Título III</div>
+              <h2>Entrenamiento, técnicas y barreras</h2>
+              <ol class="rule-list">
+                <li><strong>Entrenamientos de alto riesgo.</strong> Expansiones de Dominio, técnicas de gran área, invocaciones inestables y pruebas capaces de causar daño estructural solo podrán practicarse en zonas designadas o bajo supervisión.</li>
+                <li><strong>Límites acordados.</strong> En combates de práctica deben establecerse antes de comenzar las condiciones de victoria, intensidad permitida y señal de detención. Ignorar deliberadamente una rendición constituye una infracción grave.</li>
+                <li><strong>Respeto de barreras.</strong> Está prohibido dañar, alterar, engañar o forzar una barrera escolar por curiosidad, desafío personal o para evitar una restricción de acceso.</li>
+                <li><strong>Observadores y civiles.</strong> Ningún ejercicio podrá ejecutarse si existe riesgo previsible para estudiantes no participantes, personal civil o infraestructura esencial.</li>
+                <li><strong>Técnicas desconocidas.</strong> Toda técnica cuyo comportamiento pueda ser contagioso, permanente, mentalmente invasivo o difícil de revertir deberá declararse al instructor antes de utilizarse en otro estudiante.</li>
+              </ol>
+            </section>
+
+            <section class="rule-section" id="regla-artefactos">
+              <div class="rule-kicker">Título IV</div>
+              <h2>Objetos, armas y artefactos malditos</h2>
+              <ol class="rule-list">
+                <li><strong>Artefactos dentro de la barrera.</strong> Durante entrenamientos, ningún artefacto maldito asignado al ejercicio podrá retirarse de la barrera o zona de práctica sin autorización del instructor.</li>
+                <li><strong>Registro.</strong> Los objetos malditos de peligrosidad relevante traídos al campus deberán estar identificados, sellados cuando corresponda y registrados ante el personal responsable.</li>
+                <li><strong>Préstamo.</strong> No se prestarán armas, herramientas o artefactos cuya activación el receptor desconozca. Quien entregue un objeto debe explicar sus riesgos conocidos.</li>
+                <li><strong>Objetos sellados.</strong> Está prohibido romper sellos, estudiar contenedores restringidos o activar piezas almacenadas únicamente para averiguar qué hacen.</li>
+                <li><strong>Pérdida o robo.</strong> La desaparición de un objeto maldito debe reportarse inmediatamente. Ocultarla para evitar una sanción se considerará una infracción mayor que la pérdida accidental.</li>
+              </ol>
+            </section>
+
+            <section class="rule-section" id="regla-misiones">
+              <div class="rule-kicker">Título V</div>
+              <h2>Misiones y actividad exterior</h2>
+              <ol class="rule-list">
+                <li><strong>Asignación acorde.</strong> Las misiones deben considerar grado, experiencia, compatibilidad del equipo e información disponible. El estudiante deberá informar si posee una limitación relevante que no figure en su expediente operativo.</li>
+                <li><strong>Prioridad de evacuación.</strong> Cuando una misión incluya civiles, su evacuación y contención del riesgo tendrán prioridad sobre trofeos, reconocimiento personal o persecución innecesaria de un objetivo.</li>
+                <li><strong>Cadena de comunicación.</strong> Cambios importantes de objetivo, aparición de una amenaza superior o pérdida de contacto con miembros del equipo deberán comunicarse tan pronto como sea posible.</li>
+                <li><strong>No abandonar compañeros.</strong> Ningún alumno dejará deliberadamente atrás a un miembro del equipo capaz de ser rescatado sin evaluar alternativas. Esto no obliga a realizar un sacrificio inútil cuando el rescate sea materialmente imposible.</li>
+                <li><strong>Intervención independiente.</strong> Fuera de una misión oficial, un estudiante puede intervenir ante una amenaza inmediata, pero deberá informar posteriormente de incidentes que involucren maldiciones, víctimas, daños importantes o uso público de técnicas.</li>
+                <li><strong>Beneficio personal.</strong> Está prohibido utilizar una misión escolar para extorsionar, apropiarse de bienes, cobrar pagos no autorizados o resolver venganzas personales.</li>
+              </ol>
+            </section>
+
+            <section class="rule-section" id="regla-conducta">
+              <div class="rule-kicker">Título VI</div>
+              <h2>Conducta, convivencia y uso del poder</h2>
+              <ol class="rule-list">
+                <li><strong>Coacción.</strong> Las técnicas malditas no deberán utilizarse para intimidar, manipular, inmovilizar o humillar a otro estudiante fuera de una actividad autorizada o una situación de defensa.</li>
+                <li><strong>Consentimiento.</strong> Técnicas que alteren memoria, emociones, percepción, cuerpo o voluntad requieren consentimiento expreso durante prácticas académicas, salvo simulacros previamente autorizados con protocolos específicos.</li>
+                <li><strong>Hostigamiento.</strong> El rango, clan, linaje, técnica, ausencia de técnica o procedencia de un estudiante no justifican acoso, exclusión deliberada ni abuso de autoridad.</li>
+                <li><strong>Conflictos internos.</strong> Las disputas personales deberán mantenerse fuera de entrenamientos oficiales y misiones. Un profesor puede separar temporalmente a integrantes cuya rivalidad comprometa la seguridad del equipo.</li>
+                <li><strong>Daño material.</strong> El uso irresponsable de técnicas dentro del campus que destruya deliberadamente instalaciones, material de estudio o pertenencias ajenas podrá generar obligación de reparación o servicio institucional.</li>
+              </ol>
+            </section>
+
+            <section class="rule-section" id="regla-academico">
+              <div class="rule-kicker">Título VII</div>
+              <h2>Responsabilidad académica</h2>
+              <ol class="rule-list">
+                <li><strong>Asistencia.</strong> La actividad de campo puede justificar ausencias, pero el alumno sigue siendo responsable de recuperar contenidos esenciales, evaluaciones y protocolos de seguridad perdidos.</li>
+                <li><strong>Honestidad.</strong> Falsificar reportes, resultados de misión, calificaciones, autorizaciones o datos médicos se considera una infracción grave por el riesgo que genera para futuras decisiones operativas.</li>
+                <li><strong>Investigación.</strong> Experimentos con Energía Maldita, cuerpos malditos, sujetos conscientes o materiales clasificados requieren supervisión apropiada y un propósito académico declarado.</li>
+                <li><strong>Competencia mínima.</strong> Un alumno puede ser apartado temporalmente de determinadas misiones si aún no domina los procedimientos básicos necesarios para realizarlas de forma segura. Esto constituye una medida de formación, no una degradación personal.</li>
+                <li><strong>Conocimiento compartido.</strong> Se espera que los estudiantes documenten descubrimientos relevantes, errores de procedimiento y riesgos nuevos para evitar que otros repitan incidentes prevenibles.</li>
+              </ol>
+            </section>
+
+            <section class="rule-section" id="regla-emergencias">
+              <div class="rule-kicker">Título VIII</div>
+              <h2>Emergencias, heridas e incidentes malditos</h2>
+              <ol class="rule-list">
+                <li><strong>Atención médica.</strong> Heridas graves, contaminación maldita, alteraciones de memoria, posesión, exposición a venenos o cambios corporales no identificados deberán comunicarse al área médica aunque el estudiante considere que puede continuar.</li>
+                <li><strong>Incidente de barrera.</strong> Si una barrera falla o cambia sin aviso, los estudiantes deberán asumir que existe una emergencia hasta recibir confirmación del personal docente.</li>
+                <li><strong>Entidad desconocida.</strong> Una criatura inteligente o aparentemente amistosa de origen maldito no será atacada automáticamente si la situación permite evaluar comunicación y riesgo; tampoco deberá recibir libre acceso al campus sin revisión.</li>
+                <li><strong>Contención antes que curiosidad.</strong> Objetos, cadáveres, residuos o técnicas desconocidas encontrados durante un incidente deberán asegurarse antes de ser investigados.</li>
+                <li><strong>Reporte posterior.</strong> Los incidentes que causen víctimas, pérdida de control de una técnica, daños extensos o exposición pública deberán quedar asentados en un informe de campo.</li>
+              </ol>
+            </section>
+
+            <section class="rule-section" id="regla-disciplina">
+              <div class="rule-kicker">Título IX</div>
+              <h2>Medidas disciplinarias y revisión</h2>
+              <p>La disciplina de Alkarya busca corregir riesgos y conductas, no fabricar obediencia. La gravedad se evalúa según intención, daño causado, reincidencia y cooperación posterior al incidente.</p>
+              <ol class="rule-list">
+                <li><strong>Medidas posibles.</strong> Advertencia formal, repetición de entrenamiento, restricción temporal de instalaciones, suspensión de acceso a artefactos, acompañamiento obligatorio en misiones o suspensión académica.</li>
+                <li><strong>Infracciones graves.</strong> Poner en peligro deliberado a civiles o compañeros, introducir amenazas al campus, usar técnicas de control sobre otros sin justificación, robar objetos malditos o revelar métodos de acceso puede implicar suspensión inmediata mientras se investiga.</li>
+                <li><strong>Derecho a explicar.</strong> Antes de una sanción permanente, el estudiante tendrá oportunidad de presentar su versión, pruebas y circunstancias relevantes ante personal académico que no haya participado directamente en el conflicto cuando sea posible.</li>
+                <li><strong>Reincorporación.</strong> Una sanción no elimina la condición de alumno de forma automática. Siempre que sea seguro, la escuela favorecerá planes de corrección, acompañamiento y retorno progresivo.</li>
+              </ol>
+              <div class="principle-box"><b>Nota de Dirección.</b> “Una escuela de hechicería no existe para decidir qué clase de persona debes ser. Existe para asegurarse de que entiendas lo que puedes hacer antes de que el mundo intente decidirlo por ti.” — Dirección académica</div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>© 2026 Alkarya Metropolitan School of Jujutsu · Oficina de Registro Académico · Documento público de consulta</footer>
+  <footer>© Año 2 DDC · Alkarya Metropolitan School of Jujutsu · Oficina de Registro Académico · Documento público de consulta</footer>
 
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="studentName">
     <article class="sheet" id="sheet">
@@ -192,6 +629,52 @@
     </article>
   </div>
 
+  <div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <section class="login-sheet">
+      <div class="login-body">
+        <h2 id="loginTitle">Acceso de estudiante</h2>
+        <p>Identifícate con tu nombre registrado en el directorio académico.</p>
+        <form id="loginForm">
+          <div class="login-field">
+            <label for="studentLogin">Nombre de estudiante</label>
+            <input id="studentLogin" list="studentNames" autocomplete="off" placeholder="Ej. Yuki Zenin" required>
+            <datalist id="studentNames"></datalist>
+          </div>
+          <div class="login-field">
+            <label for="studentPassword">Contraseña</label>
+            <input id="studentPassword" type="password" placeholder="••••••••" required>
+          </div>
+          <div class="login-error" id="loginError"></div>
+          <div class="login-actions">
+            <button type="button" id="cancelLogin">Cancelar</button>
+            <button class="primary" type="submit">Iniciar sesión</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal" id="facultyModal" role="dialog" aria-modal="true" aria-labelledby="facultyName">
+    <article class="faculty-sheet">
+      <div class="sheet-head">
+        <div><h2 id="facultyName"></h2><div class="sheet-sub" id="facultySub"></div></div>
+        <button class="close" id="closeFaculty" aria-label="Cerrar">×</button>
+      </div>
+      <div class="faculty-body">
+        <div class="faculty-facts" id="facultyFacts"></div>
+        <h3 class="section-title">Perfil académico</h3>
+        <p class="bio-text" id="facultyBio"></p>
+        <div id="facultyTitlesBlock" style="display:none">
+          <h3 class="section-title">Títulos y distinciones</h3>
+          <div class="faculty-tags" id="facultyTitles"></div>
+        </div>
+        <h3 class="section-title">Áreas de docencia y especialización</h3>
+        <div class="faculty-tags" id="facultyTags"></div>
+        <div id="facultyClassified"></div>
+      </div>
+    </article>
+  </div>
+
 <script>
 const students = [
   {name:'Yuki Zenin', year:3, age:15, grade:'3', scores:{'Combate':7.8,'Control de Energía Maldita':6.7,'Teoría Maldita':7.4,'Trabajo en Equipo':8.8,'Misiones':9.0}},
@@ -200,14 +683,14 @@ const students = [
   {name:'Tobi Enmna', year:3, age:17, grade:'3', scores:{'Combate':8.3,'Control de Energía Maldita':7.4,'Teoría Maldita':7.1,'Trabajo en Equipo':8.4,'Misiones':7.9}},
   {name:'Hikari Zenin', year:3, age:17, grade:'2', scores:{'Combate':9.3,'Control de Energía Maldita':7.9,'Teoría Maldita':7.6,'Trabajo en Equipo':6.0,'Misiones':9.9}},
   {name:'Katari Zenin', year:3, age:17, grade:'3', scores:{'Combate':8.3,'Control de Energía Maldita':7.9,'Teoría Maldita':7.7,'Trabajo en Equipo':7.0,'Misiones':6.9}},
-  {name:'Haruta Gojo', year:3, age:17, grade:'3', scores:{'Combate':8.1,'Control de Energía Maldita':8.1,'Teoría Maldita':7.2,'Trabajo en Equipo':6.0,'Misiones':7.8}},
+  {name:'Haruta Gojo', year:3, age:19, grade:'3', scores:{'Combate':8.1,'Control de Energía Maldita':8.1,'Teoría Maldita':7.2,'Trabajo en Equipo':7.5,'Misiones':7.8}},
   {name:'Maki Zenin', year:3, age:17, grade:'3', scores:{'Combate':8.7,'Control de Energía Maldita':1.0,'Teoría Maldita':4.6,'Trabajo en Equipo':7.4,'Misiones':8.1}},
   {name:'Nobara', year:3, age:17, grade:'2', scores:{'Combate':8.7,'Control de Energía Maldita':8.5,'Teoría Maldita':8.3,'Trabajo en Equipo':8.2,'Misiones':7.3}},
   {name:'Inumaki Toge', year:3, age:17, grade:'3', scores:{'Combate':9.2,'Control de Energía Maldita':7.3,'Teoría Maldita':8.6,'Trabajo en Equipo':9.0,'Misiones':9.6}},
   {name:'Panda', year:3, age:17, grade:'2', scores:{'Combate':8.1,'Control de Energía Maldita':7.2,'Teoría Maldita':7.7,'Trabajo en Equipo':8.8,'Misiones':8.1}},
   {name:'Kirara', year:3, age:18, grade:'3', scores:{'Combate':7.1,'Control de Energía Maldita':7.2,'Teoría Maldita':8.6,'Trabajo en Equipo':8.4,'Misiones':7.1}},
   {name:'Hakari', year:3, age:18, grade:'2', scores:{'Combate':9.7,'Control de Energía Maldita':5.9,'Teoría Maldita':8.6,'Trabajo en Equipo':7.0,'Misiones':9.2}},
-  {name:'Lyra Usanmi', year:3, age:18, grade:'3', scores:{'Combate':7.9,'Control de Energía Maldita':6.8,'Teoría Maldita':7.8,'Trabajo en Equipo':8.8,'Misiones':6.6}},
+  {name:'Lyra Usanmi', year:3, age:16, grade:'3', scores:{'Combate':7.9,'Control de Energía Maldita':6.8,'Teoría Maldita':7.8,'Trabajo en Equipo':8.8,'Misiones':6.6}},
   {name:'Ryota Kamo', year:3, age:18, grade:'4', scores:{'Combate':5.3,'Control de Energía Maldita':6.9,'Teoría Maldita':5.6,'Trabajo en Equipo':4.0,'Misiones':5.1}},
   {name:'Tahira Kamo', year:3, age:18, grade:'3', dead:true, scores:{'Combate':8.9,'Control de Energía Maldita':7.9,'Teoría Maldita':7.2,'Trabajo en Equipo':7.0,'Misiones':7.9}},
   {name:'Miwa', year:3, age:19, grade:'4', scores:{'Combate':4.1,'Control de Energía Maldita':1.2,'Teoría Maldita':7.5,'Trabajo en Equipo':9.0,'Misiones':1.9}},
@@ -231,21 +714,229 @@ const students = [
   {name:'Rakkī Ulric', year:2, age:17, grade:'3', scores:{'Combate':7.7,'Control de Energía Maldita':7.2,'Teoría Maldita':7.4,'Trabajo en Equipo':8.2,'Misiones':8.5}},
   {name:'Naoya Zenin', year:2, age:18, grade:'2', scores:{'Combate':9.1,'Control de Energía Maldita':9.1,'Teoría Maldita':8.7,'Trabajo en Equipo':5.0,'Misiones':9.6}},
   {name:'Wally West', year:2, age:18, grade:'3', scores:{'Combate':7.3,'Control de Energía Maldita':6.9,'Teoría Maldita':6.6,'Trabajo en Equipo':8.0,'Misiones':7.1}},
-  {name:'Jani Gojo', year:2, age:13, grade:'3', scores:{'Combate':9.6,'Control de Energía Maldita':8.6,'Teoría Maldita':6.6,'Trabajo en Equipo':8.0,'Misiones':9.7}},
+  {name:'Jani Gojo', year:2, age:12, grade:'3', scores:{'Combate':9.6,'Control de Energía Maldita':8.6,'Teoría Maldita':6.6,'Trabajo en Equipo':8.0,'Misiones':9.7}},
   {name:'Charlotte Abe', year:2, age:16, grade:'3', dead:true, scores:{'Combate':7.3,'Control de Energía Maldita':7.1,'Teoría Maldita':7.1,'Trabajo en Equipo':9.0,'Misiones':7.3}},
   {name:'The Sung jin-woo', year:2, age:19, grade:'3', scores:{'Combate':8.8,'Control de Energía Maldita':1.0,'Teoría Maldita':4.6,'Trabajo en Equipo':7.0,'Misiones':9.1}},
   {name:'Aoi Todo', year:4, age:19, grade:'1', scores:{'Combate':9.5,'Control de Energía Maldita':10.0,'Teoría Maldita':10.0,'Trabajo en Equipo':6.0,'Misiones':9.1}},
   {name:'Hayaka Zenin', year:4, age:20, grade:'2', scores:{'Combate':8.9,'Control de Energía Maldita':8.9,'Teoría Maldita':9.2,'Trabajo en Equipo':8.0,'Misiones':9.1}}
 ];
 
+const professors = [
+  {
+    name:'Camila Fujiwara',
+    subject:'Táctica y Operaciones de Campo',
+    height:'1.74 m',
+    rank:'Semi-grado 1 · clasificación anterior',
+    status:'Asignación exterior · Mexnippon',
+    away:true,
+    title:'Antigua Comandante del Sector de la Luna',
+    summary:'Docente veterana del Clan Fujiwara, reconocida por un método estricto, adaptable y orientado al trabajo bajo presión.',
+    bio:'Miembro veterana del Clan Fujiwara y antigua hechicera de clasificación Semi-grado 1. Durante su servicio activo ocupó el cargo de Comandante del Sector de la Luna, coordinando equipos con perfiles muy distintos y desarrollando una reputación por exigir disciplina sin sacrificar versatilidad. En el aula traslada esa misma filosofía a ejercicios de mando, lectura del terreno y respuesta ante incidentes. Actualmente no se encuentra en Alkarya: fue destinada a Mexnippon para supervisar la creación de un nuevo sector académico y adaptar el programa de la escuela a las necesidades de la región.',
+    areas:['Coordinación de escuadrones','Táctica de campo','Control bajo presión','Mando operativo','Adaptación de técnicas','Protocolos de misión']
+  },
+  {
+    name:'Kensuke Nagino',
+    subject:'Contención y Operaciones Especiales',
+    height:'1.77 m',
+    rank:'Grado 1',
+    status:'Asignación exterior · Balkmer',
+    away:true,
+    title:'Director del Escuadrón de la Luna Menguante',
+    summary:'Especialista en contención y disciplina operativa, formado bajo los protocolos más conservadores de los Altos Mandos.',
+    bio:'Kensuke Nagino alcanzó a una edad temprana la dirección del Escuadrón de la Luna Menguante, después de destacar en el uso técnico de Energía Maldita durante misiones de contención. Su formación inicial estuvo marcada por manuales estrictos, jerarquías claras y una separación casi absoluta entre la vida personal y el deber operativo. Con los años convirtió ese rigor en una metodología docente centrada en la preparación, la lectura de riesgos y la ejecución limpia de protocolos. Actualmente se encuentra fuera de Alkarya, destinado a Balkmer para dirigir el desarrollo de otra sede escolar y establecer sus estándares de entrenamiento.',
+    areas:['Contención','Protocolos de emergencia','Evaluación de amenazas','Energía Maldita aplicada','Disciplina operativa','Dirección de equipos']
+  },
+  {
+    name:'Kishibe',
+    subject:'Ética y Filosofía',
+    height:'1.94 m',
+    rank:'Instructor no clasificado como hechicero maldito',
+    status:'En servicio · Alkarya',
+    title:'Instructor de campo',
+    summary:'Veterano de aspecto severo y enorme experiencia práctica; sus clases convierten dilemas abstractos en decisiones que un hechicero debe tomar bajo presión.',
+    bio:'Kishibe es un veterano alto y curtido, de cabello encanecido, barba descuidada y una cicatriz cosida que recorre su mejilla izquierda desde la boca. Su expediente no lo clasifica como hechicero maldito, pero su capacidad física, experiencia con armas y lectura del combate lo sitúan entre los instructores más difíciles de sorprender. En Ética y Filosofía evita las respuestas cómodas: trabaja con casos de campo, responsabilidad sobre civiles, obediencia, costo de una misión y los límites personales de quien ejerce violencia. Su enseñanza es seca, práctica y deliberadamente incómoda.',
+    areas:['Ética aplicada','Filosofía del deber','Dilemas operativos','Supervivencia','Combate práctico','Toma de decisiones']
+  },
+  {
+    name:'Masamichi Yaga',
+    subject:'Ciencias Cognitivas',
+    height:'1.92 m',
+    rank:'Grado 1',
+    status:'En servicio · Alkarya',
+    title:'Profesor e investigador',
+    summary:'Especialista en la relación entre mente, emoción y Energía Maldita, con especial interés en núcleos autónomos y cuerpos malditos.',
+    bio:'Masamichi Yaga dirige sus clases alrededor de una pregunta sencilla y difícil: qué hace que una conciencia sea una conciencia. Su trabajo estudia cómo la emoción, la memoria, la identidad y la Energía Maldita interactúan dentro de organismos humanos y construcciones artificiales. Es especialmente reconocido por su conocimiento de cuerpos malditos y núcleos capaces de mantener actividad propia. Como profesor es exigente, pero procura que los estudiantes comprendan las consecuencias éticas de alterar la mente o fabricar entidades con autonomía.',
+    areas:['Cognición y Energía Maldita','Cuerpos malditos','Núcleos autónomos','Memoria e identidad','Psicología de maldiciones','Ética de creación']
+  },
+  {
+    name:'Kento Nanami',
+    subject:'Matemáticas y Álgebra',
+    height:'1.84 m',
+    rank:'Grado 1',
+    status:'En servicio · Alkarya',
+    title:'Profesor de matemáticas aplicadas',
+    summary:'Docente reservado y puntual, con experiencia previa como asalariado en finanzas y una marcada preferencia por los métodos claros y medibles.',
+    bio:'Nanami mantiene horarios estrictos, planes de clase precisos y una tolerancia muy baja hacia el trabajo innecesariamente complicado. Antes de dedicarse por completo a la hechicería trabajó como asalariado dentro del sector financiero, experiencia que trasladó a su manera de enseñar. Sus clases utilizan proporciones, análisis de costos, estimación de riesgos y modelos sencillos para demostrar que una buena decisión de campo también puede construirse con números. Nunca llega tarde y espera la misma consideración de sus alumnos.',
+    areas:['Álgebra','Proporciones','Análisis de riesgo','Matemáticas financieras','Optimización de recursos','Cálculo aplicado a misiones']
+  },
+  {
+    name:'Quanxi',
+    subject:'Artes Marciales',
+    height:'1.74 m',
+    rank:'████████',
+    status:'En servicio · Expediente restringido',
+    title:'Instructora de combate',
+    summary:'Especialista en neutralización rápida, desplazamiento eficiente y combate con múltiples tipos de arma. Parte de su historial permanece clasificado.',
+    bio:'Quanxi basa su enseñanza en una idea directa: terminar un enfrentamiento antes de que el adversario pueda imponer su ritmo. Sus clases priorizan control corporal, velocidad, economía de movimiento, evasión y transición entre armas sin perder iniciativa. Registros anteriores indican servicio dentro de ████████████████████ y participación en ████████████ operaciones de alto riesgo. La mayor parte de su historial previo fue retirada del archivo académico por orden administrativa.',
+    areas:['Combate cuerpo a cuerpo','Evasión','Armas cortas','Armas largas','Transición de armamento','Neutralización rápida'],
+    classified:'ANTECEDENTES OPERATIVOS: [REDACTADO] · UNIDAD ANTERIOR: [REDACTADO] · EVALUACIONES DE CAMPO: ACCESO RESTRINGIDO · AUTORIZACIÓN REQUERIDA: NIVEL ███'
+  },
+  {
+    name:'Shoko Ieiri',
+    subject:'Medicina',
+    height:'1.70 m',
+    rank:'Personal médico especializado',
+    status:'En servicio · Alkarya',
+    title:'Médica e instructora clínica',
+    summary:'Especialista en tratamiento de heridas mediante Energía Maldita y una de las principales referencias de la escuela en Técnica Maldita Invertida.',
+    bio:'Shoko combina medicina convencional con un conocimiento excepcional de la Energía Maldita aplicada a la curación. Su trabajo se centra en diagnóstico rápido, estabilización de heridas, recuperación posterior a misiones y uso clínico de energía positiva mediante Técnica Maldita Invertida. En clase mantiene un tono tranquilo y pragmático: insiste en que conocer una técnica de curación no sustituye entender anatomía, trauma ni prioridades médicas.',
+    areas:['Anatomía','Trauma','Primeros auxilios','Técnica Maldita Invertida','Energía positiva','Estabilización de hechiceros']
+  },
+  {
+    name:'Utahime Iori',
+    subject:'Psicología',
+    height:'1.66 m',
+    rank:'Semi-grado 1',
+    status:'En servicio · Alkarya',
+    title:'Profesora de psicología aplicada',
+    summary:'Docente cercana y estructurada, dedicada a preparar a los estudiantes para el estrés, la presión social y el desgaste emocional de la hechicería.',
+    bio:'Utahime Iori imparte Psicología con un enfoque especialmente práctico para estudiantes expuestos de manera constante a situaciones de peligro. Sus clases cubren estrés agudo, trauma, comunicación, dinámicas de equipo y mecanismos de afrontamiento, además de la influencia que las emociones pueden ejercer sobre la Energía Maldita. Su trato cotidiano es sencillo y accesible, aunque se vuelve muy seria cuando un alumno intenta normalizar el agotamiento o ignorar señales de deterioro emocional.',
+    areas:['Psicología del estrés','Trauma','Dinámica de grupos','Comunicación','Regulación emocional','Salud mental en misión']
+  },
+  {
+    name:'Yu Haibara',
+    subject:'Historia y Sistemas',
+    height:'Registro no publicado',
+    rank:'Personal docente acreditado',
+    status:'En servicio · Alkarya',
+    title:'Profesor de historia, sistemas e investigación',
+    summary:'Profesor alegre y enérgico que combina historia de la hechicería con informática, manejo de información y métodos modernos de investigación.',
+    bio:'Yu Haibara es conocido por una forma de enseñar entusiasta y directa. Considera que un buen hechicero debería aprender más de una sola disciplina, por lo que sus clases mezclan historia institucional, evolución de los sistemas de hechicería, computación y técnicas de investigación. Dedica especial atención a enseñar cómo buscar, ordenar, contrastar y proteger información, desde archivos históricos y reportes de misión hasta bases de datos y herramientas informáticas. Su fortaleza física y experiencia práctica le permiten conectar la investigación de escritorio con las necesidades reales del trabajo de campo. Suele animar a los alumnos a aprender cualquier habilidad que pueda volverlos más independientes y útiles para su equipo.',
+    areas:['Historia de la hechicería','Historia institucional','Sistemas y computación','Gestión de información','Métodos de investigación','Búsqueda y verificación de fuentes','Archivos de misión','Seguridad básica de la información']
+  },
+  {
+    name:'Satoru Gojo',
+    subject:'Magia y Arcanos',
+    height:'1.90 m',
+    rank:'Grado Especial',
+    status:'En servicio · Alkarya',
+    title:'Profesor de teoría avanzada',
+    titles:['Profesor especializado','El más fuerte','Campeón de Dragon Thya','Cocinero 5 estrellas','Gran conductor'],
+    summary:'Profesor de alcance multidisciplinario. Sus cursos conectan Energía Maldita, maldiciones, barreras, fenómenos arcanos y teoría de técnicas de alto nivel.',
+    bio:'Satoru Gojo imparte una de las cátedras más amplias de la escuela. Su asignatura estudia la Energía Maldita desde sus fundamentos hasta fenómenos avanzados y la cruza con sistemas de magia arcana presentes en Alkarya. Gojo puede pasar de una clase sobre formación de maldiciones a una demostración de barreras, análisis de técnicas innatas o interacción entre un hechizo arcano y un velo mágico. Su método es poco convencional y con frecuencia obliga a los estudiantes a resolver problemas antes de recibir la explicación completa, pero detrás de esa informalidad existe un conocimiento excepcionalmente profundo de casi todas las ramas técnicas de la hechicería.',
+    areas:['Fundamentos de Energía Maldita','Taxonomía de maldiciones','Técnicas innatas','Técnicas de barrera','Velos mágicos','Dominios','Votos vinculantes','Objetos malditos','Magia arcana','Interacción magia-hechicería','Análisis de técnicas','Fenómenos espaciales','Defensa contra técnicas','Teoría de combate','Anomalías malditas']
+  }
+];
+
+
 const $ = s => document.querySelector(s);
 const list = $('#students');
 const search = $('#search');
 const stats = $('#stats');
 let activeFilter = 'all';
-const yearLabel = y => ({1:'Primer año',2:'Segundo año',3:'Tercer año',4:'Cuarto año'})[y] || `${y}.º año`;
+const yearLabel = y => ({1:'Primer año',2:'Segundo año',3:'Tercer año',4:'Cuarto año',5:'Quinto año'})[y] || `${y}.º año`;
 const avg = s => (Object.values(s.scores).reduce((a,b)=>a+b,0)/Object.values(s.scores).length).toFixed(1);
 const gradeLabel = g => g === 'Especial' ? 'Grado Especial' : `Grado ${g}`;
+
+const loginModal = $('#loginModal');
+const loginTrigger = $('#loginTrigger');
+const loginForm = $('#loginForm');
+const loginError = $('#loginError');
+const sessionLabel = $('#sessionLabel');
+const accountBanner = $('#accountBanner');
+const accountName = $('#accountName');
+const studentNames = $('#studentNames');
+let pendingProtectedView = null;
+
+studentNames.innerHTML = students.map(s => `<option value="${s.name.replace(/"/g,'&quot;')}"></option>`).join('');
+
+function normalizeName(value){
+  return value.trim().toLocaleLowerCase('es');
+}
+function hasStudentSession(){
+  const saved=localStorage.getItem('alkaryaStudentSession');
+  return !!students.find(x=>x.name===saved);
+}
+function updateRulesAccess(){
+  const unlocked=hasStudentSession();
+  const locked=$('#rulesLocked');
+  const doc=$('#rulesDocument');
+  if(locked) locked.style.display=unlocked?'none':'block';
+  if(doc) doc.hidden=!unlocked;
+}
+function setSession(student){
+  if(student){
+    sessionLabel.textContent = `Sesión: ${student.name}`;
+    loginTrigger.textContent = 'Mi cuenta';
+    accountName.textContent = student.name;
+    accountBanner.classList.add('show');
+    localStorage.setItem('alkaryaStudentSession', student.name);
+  } else {
+    sessionLabel.textContent = 'Portal Académico Oficial';
+    loginTrigger.textContent = 'Acceso de estudiante';
+    accountName.textContent = '';
+    accountBanner.classList.remove('show');
+    localStorage.removeItem('alkaryaStudentSession');
+    if(location.hash==='#reglamento' || location.hash==='#facultad') setDirectoryView('directorio');
+  }
+  updateRulesAccess();
+}
+function openLogin(){
+  const saved = localStorage.getItem('alkaryaStudentSession');
+  if(saved){
+    const s = students.find(x => x.name === saved);
+    if(s){ openStudent(s.name); return; }
+  }
+  loginError.textContent='';
+  $('#studentLogin').value='';
+  $('#studentPassword').value='';
+  loginModal.classList.add('show');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>$('#studentLogin').focus(),0);
+}
+function closeLogin(){
+  loginModal.classList.remove('show');
+  if(!$('#modal').classList.contains('show')) document.body.style.overflow='';
+}
+loginTrigger.addEventListener('click', openLogin);
+$('#cancelLogin').addEventListener('click', closeLogin);
+loginModal.addEventListener('click', e => { if(e.target.id==='loginModal') closeLogin(); });
+loginForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const candidate = students.find(s => normalizeName(s.name) === normalizeName($('#studentLogin').value));
+  if(!candidate){
+    loginError.textContent='No se encontró ese nombre en el registro estudiantil.';
+    return;
+  }
+  // La contraseña es decorativa en esta maqueta local; cualquier valor no vacío permite continuar.
+  setSession(candidate);
+  closeLogin();
+  if(pendingProtectedView){
+    const target=pendingProtectedView;
+    pendingProtectedView=null;
+    setDirectoryView(target);
+  } else {
+    openStudent(candidate.name);
+  }
+});
+$('#logoutBtn').addEventListener('click', () => { pendingProtectedView=null; setSession(null); });
+const savedSession = localStorage.getItem('alkaryaStudentSession');
+if(savedSession){
+  const s = students.find(x => x.name === savedSession);
+  if(s) setSession(s); else localStorage.removeItem('alkaryaStudentSession');
+}
+if($('#rulesLoginBtn')) $('#rulesLoginBtn').addEventListener('click',()=>{ pendingProtectedView='reglamento'; openLogin(); });
+updateRulesAccess();
 
 function render(){
   const q = search.value.trim().toLowerCase();
@@ -278,12 +969,94 @@ function openStudent(name){
 function closeModal(){ $('#modal').classList.remove('show'); document.body.style.overflow=''; }
 $('#close').addEventListener('click',closeModal);
 $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeLogin();}});
 search.addEventListener('input',render);
 document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{
   document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); activeFilter=btn.dataset.filter; render();
 }));
+
+function renderFaculty(){
+  const grid=$('#facultyGrid');
+  $('#facultyStats').innerHTML=`<span><strong>${professors.length}</strong> profesores registrados</span><span><strong>${professors.filter(p=>p.away).length}</strong> docentes en asignación exterior</span><span><strong>${professors.filter(p=>p.classified).length}</strong> expediente restringido</span>`;
+  grid.innerHTML=professors.map(p=>`<article class="faculty-card" data-faculty="${encodeURIComponent(p.name)}">
+    <div class="faculty-top"><div><h3>${p.name}</h3><div class="faculty-subject">${p.subject}</div></div><span class="faculty-status ${p.away?'away':''}">${p.away?'Exterior':'Personal docente'}</span></div>
+    <div class="faculty-meta">${p.title} · ${p.height}<br>${p.rank}</div>
+    <p class="faculty-summary">${p.summary}</p>
+    <div class="faculty-open">Consultar perfil docente →</div>
+  </article>`).join('');
+  document.querySelectorAll('.faculty-card').forEach(card=>card.addEventListener('click',()=>openFaculty(decodeURIComponent(card.dataset.faculty))));
+}
+
+function openFaculty(name){
+  const p=professors.find(x=>x.name===name); if(!p) return;
+  $('#facultyName').textContent=p.name;
+  $('#facultySub').textContent=`${p.subject} · ${p.title}`;
+  $('#facultyFacts').innerHTML=`
+    <div class="faculty-fact"><small>Asignatura</small><strong>${p.subject}</strong></div>
+    <div class="faculty-fact"><small>Estatura</small><strong>${p.height}</strong></div>
+    <div class="faculty-fact"><small>Clasificación</small><strong>${p.rank}</strong></div>
+    <div class="faculty-fact"><small>Situación</small><strong>${p.status}</strong></div>`;
+  $('#facultyBio').textContent=p.bio;
+  const titleBlock=$('#facultyTitlesBlock');
+  const facultyTitles=$('#facultyTitles');
+  if(p.titles && p.titles.length){
+    titleBlock.style.display='block';
+    facultyTitles.innerHTML=p.titles.map(t=>`<span class="faculty-tag">${t}</span>`).join('');
+  } else {
+    titleBlock.style.display='none';
+    facultyTitles.innerHTML='';
+  }
+  $('#facultyTags').innerHTML=p.areas.map(a=>`<span class="faculty-tag">${a}</span>`).join('');
+  $('#facultyClassified').innerHTML=p.classified?`<div class="classified-note">${p.classified}</div>`:'';
+  $('#facultyModal').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeFaculty(){ $('#facultyModal').classList.remove('show'); document.body.style.overflow=''; }
+$('#closeFaculty').addEventListener('click',closeFaculty);
+$('#facultyModal').addEventListener('click',e=>{if(e.target.id==='facultyModal')closeFaculty()});
+
+function setDirectoryView(view, updateHash=true){
+  let target=['directorio','profesores','facultad','reglamento'].includes(view)?view:'directorio';
+  if((target==='reglamento' || target==='facultad') && !hasStudentSession()){
+    pendingProtectedView=target;
+    target='directorio';
+    if(updateHash) history.replaceState(null,'','#directorio');
+    openLogin();
+  }
+  document.querySelectorAll('.directory-view').forEach(v=>v.classList.toggle('active',v.id===target));
+  document.querySelectorAll('nav a[data-view]').forEach(a=>a.classList.toggle('active',a.dataset.view===target));
+  if(updateHash && location.hash!==`#${target}`) history.replaceState(null,'',`#${target}`);
+  if(target==='reglamento') updateRulesAccess();
+  window.scrollTo({top:document.querySelector('nav').offsetTop,behavior:'smooth'});
+}
+document.querySelectorAll('nav a[data-view]').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();
+  const target=a.dataset.view;
+  if(a.dataset.protected==='true' && !hasStudentSession()){
+    pendingProtectedView=target;
+    openLogin();
+    return;
+  }
+  setDirectoryView(target);
+}));
+function viewFromHash(){
+  if(location.hash==='#profesores') return 'profesores';
+  if(location.hash==='#facultad') return 'facultad';
+  if(location.hash==='#reglamento') return 'reglamento';
+  return 'directorio';
+}
+document.querySelectorAll('.rules-index a').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();
+  const target=document.querySelector(a.getAttribute('href'));
+  if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+}));
+window.addEventListener('hashchange',()=>setDirectoryView(viewFromHash(),false));
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFaculty();});
+
 render();
+renderFaculty();
+setDirectoryView(viewFromHash(),false);
 </script>
 </body>
 </html>
