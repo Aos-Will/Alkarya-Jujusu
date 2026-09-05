@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#791f2b" />
+  <title>Alkarya Metropolitan School of Jujutsu — Directorio Estudiantil</title>
+  <style>
+    :root{
+      --ink:#1c1a19;
+      --muted:#6f6a64;
+      --paper:#f4f0e8;
+      --paper-2:#ebe4d8;
+      --panel:#fffdf8;
+      --line:#d5ccbf;
+      --red:#791f2b;
+      --red-2:#4e111b;
+      --gold:#a78445;
+      --shadow:0 16px 40px rgba(42,31,24,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(121,31,43,.08), transparent 25rem),
+        linear-gradient(rgba(255,255,255,.42),rgba(255,255,255,.42)),
+        repeating-linear-gradient(0deg, rgba(84,68,48,.025) 0 1px, transparent 1px 4px),
+        var(--paper);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    button,input{font:inherit}
+    .topbar{
+      background:#181616;
+      color:#eee8df;
+      border-bottom:4px solid var(--red);
+      padding:9px 24px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    header{
+      max-width:1220px;
+      margin:auto;
+      padding:34px 24px 20px;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:20px;
+      align-items:center;
+    }
+    .seal{
+      width:88px;height:88px;border:2px solid var(--red);border-radius:50%;
+      position:relative;display:grid;place-items:center;color:var(--red);
+      background:rgba(255,253,248,.7);
+      box-shadow:inset 0 0 0 6px var(--paper), inset 0 0 0 8px var(--red);
+    }
+    .seal:before,.seal:after{content:"";position:absolute;background:var(--red);opacity:.9}
+    .seal:before{width:46px;height:2px;transform:rotate(45deg)}
+    .seal:after{width:46px;height:2px;transform:rotate(-45deg)}
+    .seal span{font-size:28px;font-weight:bold;z-index:2;background:var(--paper);padding:2px 6px;border-radius:3px}
+    .school-title .jp{font-size:clamp(24px,4vw,43px);font-weight:700;letter-spacing:.04em;line-height:1.05}
+    .school-title .en{font-family: ui-sans-serif, system-ui, sans-serif;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+    .school-title .sub{margin-top:8px;color:var(--red);font-weight:bold;font-size:17px}
+    .term-card{border-left:1px solid var(--line);padding-left:22px;min-width:180px;text-align:right}
+    .term-card b{display:block;color:var(--red);font-family:ui-sans-serif,system-ui;font-size:12px;text-transform:uppercase;letter-spacing:.12em}
+    .term-card span{display:block;margin-top:4px;font-size:16px}
+    nav{
+      border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+      background:rgba(255,253,248,.65);
+    }
+    nav .inner{max-width:1220px;margin:auto;padding:0 24px;display:flex;gap:26px;overflow:auto}
+    nav a{color:var(--ink);text-decoration:none;padding:13px 0;font-family:ui-sans-serif,system-ui;font-size:13px;white-space:nowrap;border-bottom:3px solid transparent}
+    nav a.active{color:var(--red);border-bottom-color:var(--red);font-weight:700}
+    main{max-width:1220px;margin:28px auto 60px;padding:0 24px}
+    .hero{
+      background:linear-gradient(120deg,rgba(121,31,43,.97),rgba(78,17,27,.97));
+      color:#fff8ef;padding:28px 32px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+      border-radius:4px;
+    }
+    .hero:after{content:"呪";position:absolute;right:24px;top:-34px;font-size:170px;opacity:.08;font-weight:bold}
+    .hero h1{margin:0 0 8px;font-size:30px}.hero p{margin:0;max-width:760px;line-height:1.55;color:#eaded7}
+    .notice{margin-top:14px;font-family:ui-sans-serif,system-ui;font-size:12px;color:#d9c8c3}
+    .toolbar{
+      margin:22px 0 18px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center
+    }
+    .search{position:relative}
+    .search input{width:100%;border:1px solid var(--line);background:var(--panel);padding:12px 14px 12px 42px;border-radius:3px;outline:none}
+    .search:before{content:"⌕";position:absolute;left:14px;top:7px;font-size:26px;color:var(--muted)}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .filter{border:1px solid var(--line);background:var(--panel);padding:10px 13px;border-radius:3px;cursor:pointer;color:var(--muted)}
+    .filter.active,.filter:hover{background:var(--red);border-color:var(--red);color:#fff}
+    .stats{font-family:ui-sans-serif,system-ui;font-size:12px;color:var(--muted);margin-bottom:14px;display:flex;gap:16px;flex-wrap:wrap}
+    .students{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .student{
+      background:rgba(255,253,248,.95);border:1px solid var(--line);border-top:4px solid var(--red);
+      padding:18px;cursor:pointer;transition:.18s transform,.18s box-shadow;position:relative;min-height:192px;
+      box-shadow:0 6px 16px rgba(42,31,24,.06);border-radius:3px;
+    }
+    .student:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .student.dead{border-top-color:#8f806c;background:linear-gradient(rgba(255,253,248,.96),rgba(247,242,235,.96))}
+    .student.dead:before,.student.dead:after{position:absolute;font-size:19px;opacity:.72;content:"✿"}
+    .student.dead:before{right:14px;top:10px}.student.dead:after{right:36px;top:25px;font-size:13px}
+    .student-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+    .student h3{margin:0;font-size:20px}.meta{font-family:ui-sans-serif,system-ui;color:var(--muted);font-size:12px;margin-top:6px}
+    .grade{font-family:ui-sans-serif,system-ui;font-size:11px;border:1px solid rgba(121,31,43,.3);color:var(--red);padding:5px 8px;border-radius:999px;white-space:nowrap;font-weight:700}
+    .grade.special{background:#171515;color:#efe4d5;border-color:#171515}
+    .avg{margin-top:20px;display:flex;align-items:end;justify-content:space-between;border-top:1px solid var(--line);padding-top:13px}
+    .avg small{font-family:ui-sans-serif,system-ui;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-size:10px}
+    .avg strong{font-size:26px;color:var(--red)}
+    .open{font-family:ui-sans-serif,system-ui;font-size:12px;color:var(--muted)}
+    .dead-label{margin-top:8px;color:#7b6d5d;font-size:12px;font-style:italic}
+    .empty{grid-column:1/-1;text-align:center;padding:48px;border:1px dashed var(--line);color:var(--muted)}
+    footer{border-top:1px solid var(--line);padding:24px;color:var(--muted);font-family:ui-sans-serif,system-ui;font-size:11px;text-align:center}
+
+    .modal{position:fixed;inset:0;background:rgba(14,12,12,.72);display:none;align-items:center;justify-content:center;padding:22px;z-index:10;backdrop-filter:blur(5px)}
+    .modal.show{display:flex}
+    .sheet{width:min(760px,100%);max-height:90vh;overflow:auto;background:var(--panel);border-top:6px solid var(--red);box-shadow:0 25px 80px rgba(0,0,0,.38);position:relative}
+    .sheet.dead{border-top-color:#8f806c}
+    .sheet-head{padding:28px 30px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;align-items:start}
+    .sheet-head h2{margin:0;font-size:31px}.sheet-sub{margin-top:6px;color:var(--muted);font-family:ui-sans-serif,system-ui;font-size:13px}
+    .close{border:0;background:none;font-size:27px;cursor:pointer;color:var(--muted);line-height:1}
+    .sheet-body{padding:24px 30px 30px}
+    .academic-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
+    .academic-box{background:var(--paper);padding:12px;border:1px solid var(--line)}
+    .academic-box small{display:block;font-family:ui-sans-serif,system-ui;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+    .academic-box strong{font-size:17px}
+    .section-title{font-size:15px;margin:22px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line);color:var(--red)}
+    .score-list{display:grid;gap:10px}
+    .score-row{display:grid;grid-template-columns:220px 1fr 42px;gap:12px;align-items:center;font-family:ui-sans-serif,system-ui;font-size:13px}
+    .bar{height:8px;background:#e6dfd5;overflow:hidden;border-radius:99px}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--red-2),var(--red));border-radius:99px}
+    .overall{margin-top:20px;background:#191717;color:#f7eee4;padding:16px 18px;display:flex;justify-content:space-between;align-items:center}
+    .overall small{font-family:ui-sans-serif,system-ui;text-transform:uppercase;letter-spacing:.1em;color:#cfc2b6}.overall b{font-size:30px}
+    .flowers{font-size:18px;letter-spacing:8px;color:#837562;margin-top:12px}
+    @media(max-width:900px){.students{grid-template-columns:repeat(2,1fr)}header{grid-template-columns:auto 1fr}.term-card{display:none}}
+    @media(max-width:620px){.students{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.filters{justify-content:flex-start}.school-title .en{letter-spacing:.08em}.seal{width:70px;height:70px}.score-row{grid-template-columns:1fr 80px 35px}.score-row .label{font-size:12px}.academic-row{grid-template-columns:1fr 1fr}.hero{padding:22px}.sheet-head,.sheet-body{padding-left:20px;padding-right:20px}}
+  </style>
+</head>
+<body>
+  <div class="topbar"><span>Portal Académico Oficial</span><span>Registro Estudiantil · Acceso Público</span></div>
+  <header>
+    <div class="seal"><span>呪</span></div>
+    <div class="school-title">
+      <div class="jp">アルカリヤ呪術高等専門学校</div>
+      <div class="en">Alkarya Metropolitan School of Jujutsu</div>
+      <div class="sub">Escuela Metropolitana de Hechicería de Alkarya</div>
+    </div>
+    <div class="term-card"><b>Ciclo académico</b><span>2026 · Segundo periodo</span><b style="margin-top:10px">Departamento</b><span>Registro estudiantil</span></div>
+  </header>
+  <nav><div class="inner"><a href="#">Inicio</a><a class="active" href="#directorio">Estudiantes</a><a href="#">Facultad</a><a href="#">Reglamento</a><a href="#">Archivo de misiones</a></div></nav>
+
+  <main id="directorio">
+    <section class="hero">
+      <h1>Directorio de estudiantes</h1>
+      <p>Consulta pública de alumnos actualmente registrados en la Escuela Metropolitana de Hechicería de Alkarya. Las calificaciones reflejan la evaluación interna del ciclo en curso.</p>
+      <div class="notice">Los expedientes personales, técnicas malditas y registros disciplinarios permanecen restringidos.</div>
+    </section>
+
+    <section class="toolbar">
+      <div class="search"><input id="search" type="search" placeholder="Buscar estudiante por nombre o clan…" aria-label="Buscar estudiante"></div>
+      <div class="filters" id="filters">
+        <button class="filter active" data-filter="all">Todos</button>
+        <button class="filter" data-filter="1">1.er año</button>
+        <button class="filter" data-filter="2">2.º año</button>
+        <button class="filter" data-filter="3">3.er año</button>
+        <button class="filter" data-filter="4">4.º año</button>
+      </div>
+    </section>
+    <div class="stats" id="stats"></div>
+    <section class="students" id="students"></section>
+  </main>
+
+  <footer>© 2026 Alkarya Metropolitan School of Jujutsu · Oficina de Registro Académico · Documento público de consulta</footer>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="studentName">
+    <article class="sheet" id="sheet">
+      <div class="sheet-head">
+        <div><h2 id="studentName"></h2><div class="sheet-sub" id="studentSub"></div><div class="flowers" id="flowers"></div></div>
+        <button class="close" id="close" aria-label="Cerrar">×</button>
+      </div>
+      <div class="sheet-body">
+        <div class="academic-row" id="academicRow"></div>
+        <h3 class="section-title">Evaluación académica</h3>
+        <div class="score-list" id="scores"></div>
+        <div class="overall"><small>Promedio general</small><b id="overall"></b></div>
+      </div>
+    </article>
+  </div>
+
+<script>
+const students = [
+  {name:'Yuki Zenin', year:3, age:15, grade:'3', scores:{'Combate':7.8,'Control de Energía Maldita':6.7,'Teoría Maldita':7.4,'Trabajo en Equipo':8.8,'Misiones':9.0}},
+  {name:'Haru Zenin', year:3, age:15, grade:'3', scores:{'Combate':6.9,'Control de Energía Maldita':7.7,'Teoría Maldita':7.2,'Trabajo en Equipo':8.8,'Misiones':8.8}},
+  {name:'Chrono Gojo', year:3, age:18, grade:'3', scores:{'Combate':6.3,'Control de Energía Maldita':8.7,'Teoría Maldita':9.2,'Trabajo en Equipo':9.8,'Misiones':8.9}},
+  {name:'Tobi Enmna', year:3, age:17, grade:'3', scores:{'Combate':8.3,'Control de Energía Maldita':7.4,'Teoría Maldita':7.1,'Trabajo en Equipo':8.4,'Misiones':7.9}},
+  {name:'Hikari Zenin', year:3, age:17, grade:'2', scores:{'Combate':9.3,'Control de Energía Maldita':7.9,'Teoría Maldita':7.6,'Trabajo en Equipo':6.0,'Misiones':9.9}},
+  {name:'Katari Zenin', year:3, age:17, grade:'3', scores:{'Combate':8.3,'Control de Energía Maldita':7.9,'Teoría Maldita':7.7,'Trabajo en Equipo':7.0,'Misiones':6.9}},
+  {name:'Haruta Gojo', year:3, age:17, grade:'3', scores:{'Combate':8.1,'Control de Energía Maldita':8.1,'Teoría Maldita':7.2,'Trabajo en Equipo':6.0,'Misiones':7.8}},
+  {name:'Maki Zenin', year:3, age:17, grade:'3', scores:{'Combate':8.7,'Control de Energía Maldita':1.0,'Teoría Maldita':4.6,'Trabajo en Equipo':7.4,'Misiones':8.1}},
+  {name:'Nobara', year:3, age:17, grade:'2', scores:{'Combate':8.7,'Control de Energía Maldita':8.5,'Teoría Maldita':8.3,'Trabajo en Equipo':8.2,'Misiones':7.3}},
+  {name:'Inumaki Toge', year:3, age:17, grade:'3', scores:{'Combate':9.2,'Control de Energía Maldita':7.3,'Teoría Maldita':8.6,'Trabajo en Equipo':9.0,'Misiones':9.6}},
+  {name:'Panda', year:3, age:17, grade:'2', scores:{'Combate':8.1,'Control de Energía Maldita':7.2,'Teoría Maldita':7.7,'Trabajo en Equipo':8.8,'Misiones':8.1}},
+  {name:'Kirara', year:3, age:18, grade:'3', scores:{'Combate':7.1,'Control de Energía Maldita':7.2,'Teoría Maldita':8.6,'Trabajo en Equipo':8.4,'Misiones':7.1}},
+  {name:'Hakari', year:3, age:18, grade:'2', scores:{'Combate':9.7,'Control de Energía Maldita':5.9,'Teoría Maldita':8.6,'Trabajo en Equipo':7.0,'Misiones':9.2}},
+  {name:'Lyra Usanmi', year:3, age:18, grade:'3', scores:{'Combate':7.9,'Control de Energía Maldita':6.8,'Teoría Maldita':7.8,'Trabajo en Equipo':8.8,'Misiones':6.6}},
+  {name:'Ryota Kamo', year:3, age:18, grade:'4', scores:{'Combate':5.3,'Control de Energía Maldita':6.9,'Teoría Maldita':5.6,'Trabajo en Equipo':4.0,'Misiones':5.1}},
+  {name:'Tahira Kamo', year:3, age:18, grade:'3', dead:true, scores:{'Combate':8.9,'Control de Energía Maldita':7.9,'Teoría Maldita':7.2,'Trabajo en Equipo':7.0,'Misiones':7.9}},
+  {name:'Miwa', year:3, age:19, grade:'4', scores:{'Combate':4.1,'Control de Energía Maldita':1.2,'Teoría Maldita':7.5,'Trabajo en Equipo':9.0,'Misiones':1.9}},
+  {name:'Mechamaru', year:3, age:null, grade:'3', scores:{'Combate':7.9,'Control de Energía Maldita':7.7,'Teoría Maldita':8.8,'Trabajo en Equipo':7.0,'Misiones':8.2}},
+  {name:'Mei Zenin', year:3, age:17, grade:'3', scores:{'Combate':6.3,'Control de Energía Maldita':2.9,'Teoría Maldita':6.6,'Trabajo en Equipo':6.0,'Misiones':7.1}},
+  {name:'Reika Fujiwara', year:3, age:18, grade:'3', scores:{'Combate':9.4,'Control de Energía Maldita':9.9,'Teoría Maldita':7.5,'Trabajo en Equipo':8.6,'Misiones':9.2}},
+  {name:'Kaito Yuki', year:3, age:17, grade:'2', scores:{'Combate':7.3,'Control de Energía Maldita':8.9,'Teoría Maldita':7.3,'Trabajo en Equipo':9.1,'Misiones':8.9}},
+  {name:'Saki Rindo', year:3, age:18, grade:'3', scores:{'Combate':9.8,'Control de Energía Maldita':9.3,'Teoría Maldita':6.6,'Trabajo en Equipo':8.0,'Misiones':9.6}},
+  {name:'Yuta Okkotsu', year:3, age:18, grade:'Especial', scores:{'Combate':9.9,'Control de Energía Maldita':9.9,'Teoría Maldita':9.9,'Trabajo en Equipo':7.0,'Misiones':10}},
+  {name:'Sutāraito • Kamo', year:3, age:21, grade:'3', scores:{'Combate':5.0,'Control de Energía Maldita':7.0,'Teoría Maldita':2.6,'Trabajo en Equipo':7.0,'Misiones':2.9}},
+  {name:'Leo san juan Fujiwara', year:2, age:18, grade:'3', scores:{'Combate':9.0,'Control de Energía Maldita':8.2,'Teoría Maldita':8.1,'Trabajo en Equipo':9.0,'Misiones':9.4}},
+  {name:'Onibi', year:3, age:16, grade:'3', scores:{'Combate':8.1,'Control de Energía Maldita':8.1,'Teoría Maldita':7.2,'Trabajo en Equipo':7.0,'Misiones':9.1}},
+  {name:'Finn Mertens', year:2, age:15, grade:'3', scores:{'Combate':8.6,'Control de Energía Maldita':6.2,'Teoría Maldita':6.2,'Trabajo en Equipo':7.8,'Misiones':8.4}},
+  {name:'Ururu Gojo', year:2, age:17, grade:'2', scores:{'Combate':7.9,'Control de Energía Maldita':8.7,'Teoría Maldita':8.2,'Trabajo en Equipo':8.4,'Misiones':9.1}},
+  {name:'Itadori Yuji', year:1, age:15, grade:'3', scores:{'Combate':8.1,'Control de Energía Maldita':2.1,'Teoría Maldita':1.6,'Trabajo en Equipo':9.1,'Misiones':7.9}},
+  {name:'Momo Nishimiya', year:2, age:19, grade:'3', scores:{'Combate':7.1,'Control de Energía Maldita':7.0,'Teoría Maldita':6.6,'Trabajo en Equipo':6.8,'Misiones':5.9}},
+  {name:'Noritoshi Kamo', year:2, age:18, grade:'3', scores:{'Combate':8.2,'Control de Energía Maldita':7.5,'Teoría Maldita':8.6,'Trabajo en Equipo':7.1,'Misiones':7.2}},
+  {name:'Takuma Ino', year:2, age:17, grade:'3', scores:{'Combate':8.1,'Control de Energía Maldita':8.9,'Teoría Maldita':8.8,'Trabajo en Equipo':8.0,'Misiones':7.9}},
+  {name:'Yami Kurayami', year:2, age:17, grade:'3', scores:{'Combate':7.1,'Control de Energía Maldita':8.9,'Teoría Maldita':8.9,'Trabajo en Equipo':7.9,'Misiones':7.9}},
+  {name:'Magatsuhi Gojo', year:2, age:17, grade:'3', scores:{'Combate':9.7,'Control de Energía Maldita':8.9,'Teoría Maldita':9.6,'Trabajo en Equipo':6.0,'Misiones':9.1}},
+  {name:'Rakkī Ulric', year:2, age:17, grade:'3', scores:{'Combate':7.7,'Control de Energía Maldita':7.2,'Teoría Maldita':7.4,'Trabajo en Equipo':8.2,'Misiones':8.5}},
+  {name:'Naoya Zenin', year:2, age:18, grade:'2', scores:{'Combate':9.1,'Control de Energía Maldita':9.1,'Teoría Maldita':8.7,'Trabajo en Equipo':5.0,'Misiones':9.6}},
+  {name:'Wally West', year:2, age:18, grade:'3', scores:{'Combate':7.3,'Control de Energía Maldita':6.9,'Teoría Maldita':6.6,'Trabajo en Equipo':8.0,'Misiones':7.1}},
+  {name:'Jani Gojo', year:2, age:13, grade:'3', scores:{'Combate':9.6,'Control de Energía Maldita':8.6,'Teoría Maldita':6.6,'Trabajo en Equipo':8.0,'Misiones':9.7}},
+  {name:'Charlotte Abe', year:2, age:16, grade:'3', dead:true, scores:{'Combate':7.3,'Control de Energía Maldita':7.1,'Teoría Maldita':7.1,'Trabajo en Equipo':9.0,'Misiones':7.3}},
+  {name:'The Sung jin-woo', year:2, age:19, grade:'3', scores:{'Combate':8.8,'Control de Energía Maldita':1.0,'Teoría Maldita':4.6,'Trabajo en Equipo':7.0,'Misiones':9.1}},
+  {name:'Aoi Todo', year:4, age:19, grade:'1', scores:{'Combate':9.5,'Control de Energía Maldita':10.0,'Teoría Maldita':10.0,'Trabajo en Equipo':6.0,'Misiones':9.1}},
+  {name:'Hayaka Zenin', year:4, age:20, grade:'2', scores:{'Combate':8.9,'Control de Energía Maldita':8.9,'Teoría Maldita':9.2,'Trabajo en Equipo':8.0,'Misiones':9.1}}
+];
+
+const $ = s => document.querySelector(s);
+const list = $('#students');
+const search = $('#search');
+const stats = $('#stats');
+let activeFilter = 'all';
+const yearLabel = y => ({1:'Primer año',2:'Segundo año',3:'Tercer año',4:'Cuarto año'})[y] || `${y}.º año`;
+const avg = s => (Object.values(s.scores).reduce((a,b)=>a+b,0)/Object.values(s.scores).length).toFixed(1);
+const gradeLabel = g => g === 'Especial' ? 'Grado Especial' : `Grado ${g}`;
+
+function render(){
+  const q = search.value.trim().toLowerCase();
+  const filtered = students.filter(s => (activeFilter==='all' || String(s.year)===activeFilter) && s.name.toLowerCase().includes(q));
+  stats.innerHTML = `<span><strong>${filtered.length}</strong> estudiantes mostrados</span><span><strong>${students.filter(s=>s.dead).length}</strong> registros conmemorativos</span>`;
+  if(!filtered.length){ list.innerHTML='<div class="empty">No se encontraron estudiantes con esos criterios.</div>'; return; }
+  list.innerHTML = filtered.map((s,i)=>`<article class="student ${s.dead?'dead':''}" data-name="${encodeURIComponent(s.name)}">
+      <div class="student-head"><div><h3>${s.name}</h3><div class="meta">${yearLabel(s.year)} · ${s.age ?? 'Edad reservada'}${s.age ? ' años' : ''}</div>${s.dead?'<div class="dead-label">Registro conmemorativo</div>':''}</div><span class="grade ${s.grade==='Especial'?'special':''}">${gradeLabel(s.grade)}</span></div>
+      <div class="avg"><div><small>Promedio</small><br><strong>${avg(s)}</strong></div><div class="open">Ver expediente →</div></div>
+    </article>`).join('');
+  document.querySelectorAll('.student').forEach(card=>card.addEventListener('click',()=>openStudent(decodeURIComponent(card.dataset.name))));
+}
+
+function openStudent(name){
+  const s = students.find(x=>x.name===name); if(!s) return;
+  $('#studentName').textContent=s.name;
+  $('#studentSub').textContent=`${yearLabel(s.year)} · ${gradeLabel(s.grade)}`;
+  $('#flowers').textContent=s.dead?'✿  ❀  ✿  ❀':'';
+  $('#sheet').classList.toggle('dead',!!s.dead);
+  $('#academicRow').innerHTML=`
+    <div class="academic-box"><small>Año escolar</small><strong>${yearLabel(s.year)}</strong></div>
+    <div class="academic-box"><small>Edad</small><strong>${s.age ? s.age+' años' : 'Reservada'}</strong></div>
+    <div class="academic-box"><small>Clasificación</small><strong>${gradeLabel(s.grade)}</strong></div>
+    ${s.dead?'<div class="academic-box" style="grid-column:1/-1"><small>Estado del expediente</small><strong>Registro conmemorativo · Estudiante fallecida/o</strong></div>':''}`;
+  $('#scores').innerHTML=Object.entries(s.scores).map(([k,v])=>`<div class="score-row"><div class="label">${k}</div><div class="bar"><span style="width:${Math.min(v,10)*10}%"></span></div><strong>${Number(v).toFixed(1)}</strong></div>`).join('');
+  $('#overall').textContent=avg(s);
+  $('#modal').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){ $('#modal').classList.remove('show'); document.body.style.overflow=''; }
+$('#close').addEventListener('click',closeModal);
+$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+search.addEventListener('input',render);
+document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); activeFilter=btn.dataset.filter; render();
+}));
+render();
+</script>
+</body>
+</html>
