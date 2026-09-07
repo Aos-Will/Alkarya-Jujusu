@@ -264,6 +264,41 @@
     .locked-placeholder{margin-top:22px;padding:40px 28px;text-align:center;border:1px dashed var(--line);background:rgba(255,253,248,.75)}
     .locked-placeholder h2{margin:0 0 8px}.locked-placeholder p{color:var(--muted);font-family:ui-sans-serif,system-ui;font-size:13px;line-height:1.6}
     .locked-placeholder button{margin-top:12px;border:0;background:var(--red);color:#fff;padding:10px 14px;border-radius:3px;cursor:pointer}
+
+    /* Inicio / portal institucional */
+    .home-hero{position:relative;min-height:430px;display:flex;align-items:flex-end;overflow:hidden;border-radius:4px;box-shadow:var(--shadow);background:linear-gradient(120deg,#25191a,#4e111b);margin-bottom:22px}
+    .home-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.04)}
+    .home-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,14,15,.92),rgba(20,14,15,.64) 52%,rgba(20,14,15,.18)),linear-gradient(0deg,rgba(20,14,15,.82),transparent 55%)}
+    .home-hero-content{position:relative;z-index:2;color:#fff8ef;padding:42px;max-width:790px}
+    .home-kicker{font-family:ui-sans-serif,system-ui;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#d8c8bb;margin-bottom:10px}
+    .home-hero h1{margin:0;font-size:clamp(31px,5vw,58px);line-height:1.02}.home-hero p{font-size:17px;line-height:1.55;color:#eaded7;margin:14px 0 0;max-width:720px}
+    .home-cycle{display:inline-block;margin-top:18px;border:1px solid rgba(255,255,255,.36);padding:7px 10px;font-family:ui-sans-serif,system-ui;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+    .home-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(290px,.85fr);gap:18px;margin:18px 0}
+    .home-card{background:rgba(255,253,248,.96);border:1px solid var(--line);box-shadow:0 6px 16px rgba(42,31,24,.05);padding:22px;border-radius:3px}
+    .home-card h2{margin:0 0 12px;font-size:22px}.home-card h3{margin:0 0 8px}.home-card p{line-height:1.65;color:#4e4842}
+    .director-quote{border-left:4px solid var(--red);padding-left:20px}.director-quote .signature{font-family:ui-sans-serif,system-ui;font-size:12px;color:var(--red);font-weight:700;margin-top:18px}.director-quote .future{font-size:19px;color:var(--red);font-weight:700;margin-top:14px}
+    .security-card{background:#191717;color:#f3eadf;border-color:#191717}.security-card h2{color:#fff}.security-card p{color:#d7cbc0}.security-badge{display:inline-block;font-family:ui-sans-serif,system-ui;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,.28);padding:5px 7px;margin-bottom:12px}.security-lines{display:grid;gap:8px;margin-top:14px;font-family:ui-sans-serif,system-ui;font-size:12px;color:#d7cbc0}.security-lines span:before{content:"◆";color:var(--gold);margin-right:8px;font-size:8px}
+    .home-section-title{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:30px 0 12px}.home-section-title h2{margin:0;font-size:25px}.home-section-title p{margin:0;color:var(--muted);font-family:ui-sans-serif,system-ui;font-size:12px}
+    .notice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.notice-card{border:1px solid var(--line);background:var(--panel);padding:17px;border-left:4px solid var(--gold)}.notice-card b{font-family:ui-sans-serif,system-ui;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}.notice-card h3{font-size:17px;margin:7px 0}.notice-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+    .quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.quick-link{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--panel);padding:17px;min-height:132px;cursor:pointer}.quick-link:hover{border-color:var(--red);box-shadow:var(--shadow)}.quick-link .q-icon{font-size:22px;color:var(--red)}.quick-link h3{margin:12px 0 5px;font-size:16px}.quick-link p{margin:0;color:var(--muted);font-family:ui-sans-serif,system-ui;font-size:11px;line-height:1.45}.lock-mark{font-size:10px;color:var(--gold);font-family:ui-sans-serif,system-ui;text-transform:uppercase;letter-spacing:.08em}
+    .about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.fact-list{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.home-fact{background:var(--paper);border:1px solid var(--line);padding:11px}.home-fact small{display:block;font-family:ui-sans-serif,system-ui;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}.home-fact strong{font-size:14px}
+    .campus-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.campus-preview-card{position:relative;min-height:190px;overflow:hidden;background:#292322;border-radius:3px}.campus-preview-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.campus-preview-card:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,12,12,.85),rgba(15,12,12,.08) 70%)}.campus-preview-text{position:absolute;z-index:2;bottom:0;color:#fff;padding:16px}.campus-preview-text h3{margin:0 0 4px}.campus-preview-text p{margin:0;color:#e3d8cf;font-family:ui-sans-serif,system-ui;font-size:11px;line-height:1.4}
+    .status-board{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.status-item{border:1px solid var(--line);background:var(--panel);padding:12px;font-family:ui-sans-serif,system-ui;font-size:11px}.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#477451;margin-right:7px}.status-item strong{display:block;margin-top:5px;font-family:Georgia,"Times New Roman",serif;font-size:14px}
+    .home-member{display:none;margin:18px 0;padding:16px 18px;background:linear-gradient(120deg,rgba(121,31,43,.08),rgba(167,132,69,.08));border:1px solid var(--line);align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.home-member.show{display:flex}.home-member strong{color:var(--red)}.home-member-links{display:flex;gap:8px;flex-wrap:wrap}.home-member-links button{border:1px solid var(--line);background:var(--panel);padding:7px 10px;cursor:pointer;font-size:11px}.home-member-links button:hover{border-color:var(--red);color:var(--red)}
+    .community-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.7fr);gap:16px}.feed{display:grid;gap:12px}.post-card{background:var(--panel);border:1px solid var(--line);padding:19px;border-radius:3px}.post-top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.post-author{font-size:18px;font-weight:700}.post-role{display:inline-block;margin-top:5px;font-family:ui-sans-serif,system-ui;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);border:1px solid rgba(121,31,43,.25);padding:3px 5px}.post-date{font-family:ui-sans-serif,system-ui;font-size:10px;color:var(--muted);white-space:nowrap}.post-title{font-size:16px;margin:14px 0 6px;color:var(--red)}.post-body{font-size:14px;line-height:1.65;color:#49433e;white-space:pre-wrap}.post-user{border-left:4px solid var(--gold)}
+    .new-post-box{display:none;margin-bottom:12px;border:1px dashed var(--line);background:rgba(255,253,248,.7);padding:14px}.new-post-box.show{display:block}.new-post-box input,.new-post-box textarea{width:100%;border:1px solid var(--line);padding:9px;background:#fff;margin-top:8px}.new-post-box textarea{min-height:78px;resize:vertical}.new-post-actions{display:flex;justify-content:flex-end;margin-top:8px}.new-post-actions button{border:0;background:var(--red);color:#fff;padding:8px 11px;cursor:pointer}
+    .student-chat{display:none;background:#171515;color:#eee7df;border-top:4px solid var(--red);min-height:460px;max-height:620px;flex-direction:column;position:sticky;top:12px}.student-chat.show{display:flex}.chat-head{padding:14px 15px;border-bottom:1px solid rgba(255,255,255,.12)}.chat-head b{display:block;font-size:15px}.chat-head span{font-family:ui-sans-serif,system-ui;color:#a99f96;font-size:10px}.chat-messages{padding:12px 14px;overflow:auto;flex:1;display:flex;flex-direction:column;gap:9px;min-height:310px;max-height:430px}.chat-msg{font-family:ui-sans-serif,system-ui;font-size:12px;line-height:1.45}.chat-msg b{color:#d7aab0;margin-right:6px}.chat-msg.self b{color:#e2c989}.chat-time{font-size:9px;color:#77706a;margin-left:5px}.chat-form{border-top:1px solid rgba(255,255,255,.12);padding:10px;display:grid;grid-template-columns:1fr auto;gap:7px}.chat-form input{min-width:0;background:#292525;color:#f7f0e8;border:1px solid #403b39;padding:9px}.chat-form button{border:0;background:var(--red);color:#fff;padding:0 12px;cursor:pointer}.chat-locked{background:var(--panel);border:1px solid var(--line);padding:19px;color:var(--muted);font-family:ui-sans-serif,system-ui;font-size:12px;line-height:1.5}
+    .private-only-section{display:none;margin-top:30px;border-top:1px solid var(--line);padding-top:26px}.private-only-section.show{display:block}.private-zone-head{background:#181616;color:#f4ece4;border-left:5px solid var(--red);padding:20px 22px;display:flex;justify-content:space-between;align-items:center;gap:18px}.private-zone-head span{font-family:ui-sans-serif,system-ui;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#cbbdb2}.private-zone-head h2{margin:5px 0 3px;font-size:27px}.private-zone-head p{margin:0;color:#cbbdb2;font-size:12px}.private-lock{font-family:ui-sans-serif,system-ui;font-size:10px;letter-spacing:.12em;border:1px solid rgba(255,255,255,.25);padding:7px 9px;white-space:nowrap}
+    .profile-dashboard{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:14px;margin-top:16px}.profile-main-card,.profile-actions-card{background:var(--panel);border:1px solid var(--line);padding:20px}.profile-name-row{display:flex;justify-content:space-between;gap:20px;align-items:start}.profile-name-row small,.profile-actions-card>small,.profile-observation small{font-family:ui-sans-serif,system-ui;font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}.profile-name-row h2{margin:5px 0 4px;font-size:26px}.profile-name-row p{margin:0;color:var(--muted);font-size:12px}.profile-average{text-align:right}.profile-average strong{display:block;font-size:32px;color:var(--red)}.profile-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}.profile-fact{background:var(--paper);border:1px solid var(--line);padding:10px}.profile-fact small{display:block;font-family:ui-sans-serif,system-ui;font-size:8px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}.profile-fact b{font-size:13px}.profile-observation{margin-top:14px;border-top:1px solid var(--line);padding-top:13px}.profile-observation p{margin:5px 0 0;line-height:1.55;color:#4e4842}.profile-actions-card{display:grid;gap:8px;align-content:start}.profile-actions-card button{border:1px solid var(--line);background:var(--paper);padding:10px;text-align:left;cursor:pointer}.profile-actions-card button:hover{border-color:var(--red);color:var(--red)}
+    .calendar-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.calendar-card{background:var(--panel);border:1px solid var(--line);padding:15px;display:grid;grid-template-columns:68px 1fr;gap:13px}.calendar-card time{font-family:ui-sans-serif,system-ui;font-weight:800;color:var(--red);font-size:15px;border-right:1px solid var(--line);padding-right:10px}.calendar-card b{font-size:14px}.calendar-card p{margin:4px 0 0;color:var(--muted);font-size:11px;line-height:1.5}
+    .events-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.event-card,.club-card,.contact-card{background:var(--panel);border:1px solid var(--line);padding:15px}.event-card span,.club-card span{font-family:ui-sans-serif,system-ui;font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:var(--red)}.event-card h3{margin:7px 0;font-size:16px}.event-card p,.club-card p,.contact-card p{margin:0;color:var(--muted);font-size:11px;line-height:1.5}.clubs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.club-card b,.contact-card b{display:block;font-size:15px;margin-bottom:6px}.club-card span{display:block;margin-top:10px;color:var(--gold)}
+    .contacts-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.contact-card small{display:block;font-family:ui-sans-serif,system-ui;font-size:9px;letter-spacing:.1em;color:var(--red);font-weight:800;margin-bottom:5px}.contact-card.emergency{background:#201718;color:#f4ece4;border-color:#201718}.contact-card.emergency small{color:#e5b8bd}.contact-card.emergency p{color:#cbbdb2}
+    .ranking-toolbar{margin:-7px 0 16px;display:none;gap:10px;flex-wrap:wrap;align-items:end;background:rgba(255,253,248,.72);border:1px solid var(--line);padding:11px}.ranking-toolbar.show{display:flex}.ranking-toolbar label{display:grid;gap:5px;min-width:190px}.ranking-toolbar label span{font-family:ui-sans-serif,system-ui;font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}.ranking-toolbar select{border:1px solid var(--line);background:#fff;padding:9px 10px}.ranking-toolbar button{border:1px solid var(--line);background:var(--panel);padding:9px 11px;cursor:pointer}.ranking-toolbar button:hover{border-color:var(--red);color:var(--red)}.rank-focus{margin-top:10px;font-family:ui-sans-serif,system-ui;font-size:11px;color:var(--red)}
+    .private-record-section{display:none}.private-record-section.show{display:block}.extended-record{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.record-box{background:var(--paper);border:1px solid var(--line);padding:11px}.record-box small{display:block;font-family:ui-sans-serif,system-ui;font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}.record-box strong{font-size:13px}.record-observation{grid-column:1/-1;background:#fff;border-left:3px solid var(--gold);padding:12px}.record-observation small{display:block;font-family:ui-sans-serif,system-ui;font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}.record-observation p{margin:0;line-height:1.55;font-size:13px}
+    .private-title{margin-top:28px}
+    @media(max-width:980px){.home-grid,.community-layout,.about-grid,.profile-dashboard{grid-template-columns:1fr}.quick-grid{grid-template-columns:repeat(2,1fr)}.status-board{grid-template-columns:repeat(2,1fr)}.student-chat{position:static}.campus-preview{grid-template-columns:1fr 1fr}.events-grid{grid-template-columns:repeat(2,1fr)}.contacts-grid{grid-template-columns:repeat(2,1fr)}.profile-facts{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){.home-hero{min-height:390px}.home-hero-content{padding:26px}.notice-grid,.quick-grid,.campus-preview,.status-board,.fact-list,.calendar-grid,.events-grid,.clubs-grid,.contacts-grid,.profile-facts,.extended-record{grid-template-columns:1fr}.post-top{display:block}.post-date{display:block;margin-top:7px}}
+
     @media(max-width:900px){.students,.faculty-grid{grid-template-columns:repeat(2,1fr)}header{grid-template-columns:auto 1fr}.term-card{display:none}.faculty-facts{grid-template-columns:repeat(2,1fr)}.rules-shell{grid-template-columns:1fr}.rules-index{position:static}.rules-index a{display:inline-block;margin-right:12px}.academics-lead{grid-template-columns:1fr}.program-years{grid-template-columns:repeat(2,1fr)}.departments-grid{grid-template-columns:1fr}.specialization-grid{grid-template-columns:repeat(2,1fr)}.evaluation-grid{grid-template-columns:repeat(2,1fr)}.institution-facts{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:620px){.students,.faculty-grid{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.filters{justify-content:flex-start}.school-title .en{letter-spacing:.08em}.seal{width:70px;height:70px}.score-row{grid-template-columns:1fr 80px 35px}.score-row .label{font-size:12px}.academic-row{grid-template-columns:1fr 1fr}.hero{padding:22px}.sheet-head,.sheet-body{padding-left:20px;padding-right:20px}.campus-gallery,.program-years,.specialization-grid,.evaluation-grid,.institution-facts,.facilities-list{grid-template-columns:1fr}.campus-card.wide{grid-column:auto}.campus-visual,.campus-card.wide .campus-visual{height:220px}}
   </style>
@@ -274,7 +309,7 @@
       <button class="login-trigger" id="loginTrigger" type="button">Acceso de estudiante</button>
       <span class="session-label" id="sessionLabel">Portal Académico Oficial</span>
     </div>
-    <span>Registro Estudiantil · Acceso Público</span>
+    <span>Portal Académico · Acceso Institucional</span>
   </div>
   <header>
     <div class="seal"><span>呪</span></div>
@@ -283,12 +318,178 @@
       <div class="en">Alkarya Metropolitan School of Jujutsu</div>
       <div class="sub">Escuela Metropolitana de Hechicería de Alkarya</div>
     </div>
-    <div class="term-card"><b>Ciclo académico</b><span>Año 2 DDC · Segundo periodo</span><b style="margin-top:10px">Departamento</b><span>Registro estudiantil</span></div>
+    <div class="term-card"><b>Ciclo académico</b><span>Año 2 DDC · Segundo periodo</span><b style="margin-top:10px">Sistema</b><span>Portal académico</span></div>
   </header>
-  <nav><div class="inner"><a href="#">Inicio</a><a class="active" data-view="directorio" href="#directorio">Estudiantes</a><a data-view="profesores" href="#profesores">Profesores</a><a data-view="facultad" data-protected="true" href="#facultad">Facultad</a><a data-view="reglamento" data-protected="true" href="#reglamento">Reglamento</a><a href="#">Archivo de misiones</a></div></nav>
+  <nav><div class="inner"><a class="active" data-view="inicio" href="#inicio">Inicio</a><a data-view="directorio" href="#directorio">Estudiantes</a><a data-view="profesores" href="#profesores">Profesores</a><a data-view="facultad" data-protected="true" href="#facultad">Facultad</a><a data-view="reglamento" data-protected="true" href="#reglamento">Reglamento</a><a href="#">Archivo de misiones</a></div></nav>
 
   <main>
-    <section id="directorio" class="directory-view active">
+
+    <section id="inicio" class="directory-view active">
+      <section class="home-hero">
+        <img src="images/entrada.jpg" alt="Entrada de la Escuela Metropolitana de Hechicería de Alkarya" onerror="this.style.display='none'">
+        <div class="home-hero-content">
+          <div class="home-kicker">Portal institucional · Campus principal</div>
+          <h1>Escuela Metropolitana de Hechicería de Alkarya</h1>
+          <p>Formación académica, investigación y preparación profesional para hechiceros capaces de comprender su poder y decidir responsablemente su propio futuro.</p>
+          <span class="home-cycle">Año 2 DDC · Segundo periodo</span>
+        </div>
+      </section>
+
+      <div class="home-member" id="homeMember">
+        <div><small>Portal estudiantil</small><br><span>Bienvenido, <strong id="homeMemberName"></strong></span> · <span id="homeMemberMeta"></span></div>
+        <div class="home-member-links"><button type="button" data-go-view="directorio">Mi expediente</button><button type="button" data-go-view="facultad">Facultad</button><button type="button" data-go-view="reglamento">Reglamento</button></div>
+      </div>
+
+      <div class="home-grid">
+        <article class="home-card director-quote">
+          <h2>Mensaje de Dirección</h2>
+          <p>La Escuela Metropolitana de Hechicería de Alkarya existe para enseñarte a controlar tu poder, comprender la responsabilidad que conlleva y asegurar que tu libertad sea solo tuya. Además, aquí no estás solo: tus batallas y complicaciones son compartidas por otros iguales a ti.</p>
+          <div class="future">Decide tu futuro.</div>
+          <div class="signature">— Satoru Gojo, Director</div>
+        </article>
+        <article class="home-card security-card">
+          <span class="security-badge">Ubicación protegida · Acceso clasificado</span>
+          <h2>Un campus que no puede ser encontrado</h2>
+          <p>La localización exacta de la escuela no figura en cartografía pública. Sus barreras interfieren con métodos ordinarios, arcanos y malditos de rastreo, y los accesos autorizados cambian según los protocolos de seguridad vigentes.</p>
+          <p>Para una persona sin autorización, localizar el recinto o cruzar sus límites deliberadamente resulta inviable. Esta protección permite que estudiantes y personal vivan, estudien y se recuperen sin convertir el campus en un objetivo accesible desde el exterior.</p>
+          <div class="security-lines"><span>Rutas de acceso verificadas por identidad</span><span>Barreras perimetrales y velos de ocultamiento</span><span>Visitantes únicamente mediante autorización previa</span><span>Protocolos de evacuación y teletransportación independientes</span></div>
+        </article>
+      </div>
+
+      <div class="home-section-title"><div><h2>Avisos del campus</h2><p>Comunicaciones institucionales del segundo periodo.</p></div></div>
+      <section class="notice-grid">
+        <article class="notice-card"><b>Aviso académico</b><h3>Evaluaciones del segundo periodo</h3><p>Los departamentos publicarán fechas y criterios de evaluación por asignatura. Las prácticas de campo pueden modificar horarios ordinarios.</p></article>
+        <article class="notice-card"><b>Facultad</b><h3>Preparación de estudiantes de 3.er año</h3><p>Quienes se aproximan al 4.º año deberán revisar departamentos y especializaciones antes del proceso de ingreso a Facultad.</p></article>
+        <article class="notice-card"><b>Movilidad académica</b><h3>Desarrollo institucional en Mexnippon</h3><p>Camila Fujiwara continúa su asignación exterior supervisando la formación de un nuevo sector académico vinculado a Alkarya.</p></article>
+        <article class="notice-card"><b>Cooperación</b><h3>Centro patrocinado por Balkmer</h3><p>El Centro de Entrenamiento con Criaturas Simuladas se encuentra operativo para prácticas autorizadas y reservas docentes.</p></article>
+      </section>
+
+      <div class="home-section-title"><div><h2>Accesos rápidos</h2><p>Servicios y documentos del portal.</p></div></div>
+      <section class="quick-grid">
+        <a class="quick-link" data-go-view="directorio"><div class="q-icon">学</div><h3>Estudiantes</h3><p>Directorio y expedientes académicos públicos.</p></a>
+        <a class="quick-link" data-go-view="profesores"><div class="q-icon">教</div><h3>Profesores</h3><p>Personal docente, asignaturas y áreas de especialización.</p></a>
+        <a class="quick-link" data-go-view="facultad"><div class="q-icon">院</div><h3>Facultad</h3><span class="lock-mark">Acceso estudiantil</span><p>Programa, campus, departamentos y especializaciones.</p></a>
+        <a class="quick-link" data-go-view="reglamento"><div class="q-icon">規</div><h3>Reglamento</h3><span class="lock-mark">Acceso estudiantil</span><p>Normativa interna, seguridad y protocolos.</p></a>
+      </section>
+
+      <div class="home-section-title"><div><h2>Sobre Alkarya</h2><p>Información institucional.</p></div></div>
+      <section class="about-grid">
+        <article class="home-card">
+          <h2>Formación, investigación y autonomía</h2>
+          <p>La Escuela Metropolitana de Hechicería de Alkarya es una institución residencial dedicada a la formación, investigación y preparación profesional de hechiceros. Su programa combina educación convencional, estudio de fenómenos malditos, entrenamiento práctico, sistemas, medicina, humanidades y desarrollo individual.</p>
+          <p>Los edificios se distribuyen entre bosque, jardines y elevaciones naturales, separando espacios académicos, residenciales, médicos y de entrenamiento. El diseño del campus prioriza tanto la seguridad como la posibilidad de llevar una vida cotidiana fuera de las prácticas de campo.</p>
+        </article>
+        <div class="fact-list">
+          <div class="home-fact"><small>Programa académico</small><strong>5 años</strong></div>
+          <div class="home-fact"><small>Ciclo actual</small><strong>Año 2 DDC</strong></div>
+          <div class="home-fact"><small>Campus principal</small><strong>Alkarya · ubicación protegida</strong></div>
+          <div class="home-fact"><small>Modalidad</small><strong>Residencial</strong></div>
+          <div class="home-fact"><small>Ingreso a Facultad</small><strong>4.º año</strong></div>
+          <div class="home-fact"><small>Director</small><strong>Satoru Gojo</strong></div>
+        </div>
+      </section>
+
+      <div class="home-section-title"><div><h2>Vida en el campus</h2><p>Una mirada a los espacios cotidianos.</p></div></div>
+      <section class="campus-preview">
+        <article class="campus-preview-card"><img src="images/residencias.jpg" alt="Residencias estudiantiles" onerror="this.style.display='none'"><div class="campus-preview-text"><h3>Residencias</h3><p>Habitaciones individuales preparadas para convertirse en el espacio personal de cada estudiante.</p></div></article>
+        <article class="campus-preview-card"><img src="images/comedor.jpg" alt="Comedor principal" onerror="this.style.display='none'"><div class="campus-preview-text"><h3>Comedor</h3><p>Quince mesas y uno de los principales puntos de convivencia entre estudiantes de distintos años.</p></div></article>
+        <article class="campus-preview-card"><img src="images/jardin.jpg" alt="Jardín del campus" onerror="this.style.display='none'"><div class="campus-preview-text"><h3>Jardines</h3><p>Áreas naturales de descanso, lectura y estudio alejadas de las zonas de entrenamiento.</p></div></article>
+      </section>
+
+      <div class="home-section-title"><div><h2>Estado del campus</h2><p>Resumen operativo.</p></div></div>
+      <section class="status-board">
+        <div class="status-item"><span class="status-dot"></span>Barreras principales<strong>Estables</strong></div>
+        <div class="status-item"><span class="status-dot"></span>Centro Médico<strong>Operativo</strong></div>
+        <div class="status-item"><span class="status-dot"></span>Teletransportación<strong>Operativa</strong></div>
+        <div class="status-item"><span class="status-dot"></span>Entrenamiento<strong>Disponible</strong></div>
+        <div class="status-item"><span class="status-dot"></span>Amenaza interna<strong>Nivel 0</strong></div>
+      </section>
+
+      <section class="private-only-section" id="privateStudentPortal" aria-label="Portal estudiantil privado">
+        <div class="private-zone-head"><div><span>Área privada · Sesión estudiantil</span><h2>Mi portal</h2><p>Información académica y servicios internos disponibles únicamente para estudiantes identificados.</p></div><div class="private-lock">ACCESO INTERNO</div></div>
+
+        <section class="profile-dashboard" id="profileDashboard">
+          <article class="profile-main-card">
+            <div class="profile-name-row"><div><small>Perfil académico</small><h2 id="profileName"></h2><p id="profileMeta"></p></div><div class="profile-average"><small>Promedio</small><strong id="profileAverage"></strong></div></div>
+            <div class="profile-facts" id="profileFacts"></div>
+            <div class="profile-observation"><small>Observación docente automática</small><p id="profileObservation"></p></div>
+          </article>
+          <aside class="profile-actions-card">
+            <small>Accesos de cuenta</small>
+            <button type="button" id="profileOpenRecord">Abrir expediente académico</button>
+            <button type="button" data-go-view="facultad">Facultad y especializaciones</button>
+            <button type="button" data-go-view="reglamento">Reglamento interno</button>
+          </aside>
+        </section>
+
+        <div class="home-section-title private-title"><div><h2>Calendario académico</h2><p>Fechas internas del segundo periodo.</p></div></div>
+        <section class="calendar-grid">
+          <article class="calendar-card"><time>12 SEP</time><div><b>Evaluación práctica · 3.er año</b><p>Pruebas supervisadas de control, combate y respuesta en campo.</p></div></article>
+          <article class="calendar-card"><time>18 SEP</time><div><b>Revisión médica general</b><p>Evaluación preventiva por el Centro Médico Ieiri para estudiantes activos.</p></div></article>
+          <article class="calendar-card"><time>23 SEP</time><div><b>Torneo interno de entrenamiento</b><p>Encuentros no clasificatorios dentro de barreras de seguridad.</p></div></article>
+          <article class="calendar-card"><time>28 SEP</time><div><b>Feria de Facultades</b><p>Presentación de departamentos y especializaciones para estudiantes de 3.er año.</p></div></article>
+          <article class="calendar-card"><time>04 OCT</time><div><b>Jornada de investigación</b><p>Exposición de proyectos, archivos y trabajos de campo de los departamentos.</p></div></article>
+          <article class="calendar-card"><time>11 OCT</time><div><b>Evaluaciones del segundo periodo</b><p>Inicio de la ventana ordinaria de exámenes y entregas académicas.</p></div></article>
+        </section>
+
+        <div class="home-section-title private-title"><div><h2>Eventos del campus</h2><p>Actividades de convivencia y formación.</p></div></div>
+        <section class="events-grid">
+          <article class="event-card"><span>Entrenamiento</span><h3>Práctica conjunta con Balkmer</h3><p>Sesión especial en el Centro de Criaturas Simuladas para equipos autorizados.</p></article>
+          <article class="event-card"><span>Vida estudiantil</span><h3>Noche de películas en residencias</h3><p>Actividad libre organizada por estudiantes. Las zonas de entrenamiento permanecerán cerradas para participantes.</p></article>
+          <article class="event-card"><span>Académico</span><h3>Clases abiertas de Facultad</h3><p>Estudiantes de 3.er año podrán observar sesiones introductorias de distintas especializaciones.</p></article>
+          <article class="event-card"><span>Movilidad</span><h3>Enlace académico con Mexnippon</h3><p>Sesión informativa sobre el nuevo sector escolar dirigido desde el exterior.</p></article>
+        </section>
+
+        <div class="home-section-title private-title"><div><h2>Clubes estudiantiles</h2><p>Actividades voluntarias fuera del programa ordinario.</p></div></div>
+        <section class="clubs-grid">
+          <article class="club-card"><b>Cocina</b><p>Recetas, cocina práctica y actividades comunes del comedor.</p><span>Inscripción abierta</span></article>
+          <article class="club-card"><b>Investigación Paranormal</b><p>Estudio de rumores, archivos históricos y fenómenos no asignados a misión.</p><span>Supervisión requerida</span></article>
+          <article class="club-card"><b>Deportes</b><p>Entrenamiento físico no maldito, carreras y competencias amistosas.</p><span>Inscripción abierta</span></article>
+          <article class="club-card"><b>Sistemas</b><p>Programación, redes, seguridad de información y proyectos con el departamento de Haibara.</p><span>Laboratorio disponible</span></article>
+          <article class="club-card"><b>Armas y Mantenimiento</b><p>Cuidado, reparación y estudio responsable de equipo autorizado.</p><span>Acceso supervisado</span></article>
+          <article class="club-card"><b>Jardinería</b><p>Cuidado de jardines, senderos y espacios de descanso del campus.</p><span>Inscripción abierta</span></article>
+          <article class="club-card"><b>Música</b><p>Ensayo, composición y actividades culturales entre estudiantes.</p><span>Sala compartida</span></article>
+          <article class="club-card"><b>Juegos de Mesa</b><p>Encuentros casuales, estrategia y torneos internos sin clasificación académica.</p><span>Reuniones semanales</span></article>
+          <article class="club-card"><b>Fotografía</b><p>Registro visual del campus y actividades autorizadas; las zonas restringidas permanecen excluidas.</p><span>Normas de privacidad aplicables</span></article>
+        </section>
+
+        <div class="home-section-title private-title"><div><h2>Directorio de contactos internos</h2><p>Extensiones ficticias del campus · uso interno.</p></div></div>
+        <section class="contacts-grid">
+          <article class="contact-card"><small>EXT. 101</small><b>Recepción</b><p>Visitantes autorizados, orientación general y accesos.</p></article>
+          <article class="contact-card"><small>EXT. 115</small><b>Administración Académica</b><p>Horarios, expedientes, evaluaciones y documentación estudiantil.</p></article>
+          <article class="contact-card"><small>EXT. 140</small><b>Residencias</b><p>Habitaciones, mantenimiento y asuntos de convivencia.</p></article>
+          <article class="contact-card"><small>EXT. 204</small><b>Centro Médico Ieiri</b><p>Consultas, recuperación y atención clínica.</p></article>
+          <article class="contact-card"><small>EXT. 220</small><b>Biblioteca Central</b><p>Préstamos, archivos académicos y salas de estudio.</p></article>
+          <article class="contact-card"><small>EXT. 260</small><b>Sistemas e Investigación</b><p>Accesos, equipos, archivos digitales y soporte interno.</p></article>
+          <article class="contact-card"><small>EXT. 301</small><b>Seguridad del Campus</b><p>Incidentes, objetos perdidos y accesos no autorizados.</p></article>
+          <article class="contact-card"><small>EXT. 330</small><b>Zona de Teletransportación</b><p>Reservas, llegadas y salidas autorizadas.</p></article>
+          <article class="contact-card"><small>EXT. 410</small><b>Campos de Entrenamiento</b><p>Reservas, supervisión y estado de barreras de práctica.</p></article>
+          <article class="contact-card emergency"><small>EXT. 777</small><b>Emergencias de Barrera</b><p>Rupturas, intrusiones, pérdida de contención o anomalías del perímetro.</p></article>
+        </section>
+
+        <div class="home-section-title private-title"><div><h2>Comunidad estudiantil</h2><p>Publicaciones del campus y canal general.</p></div></div>
+        <section class="community-layout">
+          <div>
+            <div class="new-post-box show" id="newPostBox">
+              <strong>Nueva publicación</strong>
+              <input id="newPostTitle" maxlength="80" placeholder="Título opcional">
+              <textarea id="newPostBody" maxlength="1200" placeholder="Escribe una publicación para el inicio…"></textarea>
+              <div class="new-post-actions"><button id="publishPostBtn" type="button">Publicar</button></div>
+            </div>
+            <div class="feed" id="campusFeed"></div>
+          </div>
+          <aside>
+            <div class="student-chat show" id="studentChat">
+              <div class="chat-head"><b>Chat estudiantil · General</b><span>Sesión actual · los mensajes no se guardan al recargar</span></div>
+              <div class="chat-messages" id="chatMessages"></div>
+              <form class="chat-form" id="chatForm"><input id="chatInput" autocomplete="off" maxlength="240" placeholder="Enviar mensaje…"><button type="submit">Enviar</button></form>
+            </div>
+          </aside>
+        </section>
+      </section>
+    </section>
+
+    <section id="directorio" class="directory-view">
     <section class="hero">
       <h1>Directorio de estudiantes</h1>
       <p>Consulta pública de alumnos actualmente registrados en la Escuela Metropolitana de Hechicería de Alkarya. Las calificaciones reflejan la evaluación interna del ciclo en curso.</p>
@@ -310,6 +511,18 @@
         <button class="filter" data-filter="4">4.º año</button>
         <button class="filter" data-filter="5">5.º año</button>
       </div>
+    </section>
+    <section class="ranking-toolbar" id="rankingToolbar" aria-label="Orden académico">
+      <label><span>Ordenar por</span><select id="rankingField">
+        <option value="Promedio">Promedio general</option>
+        <option value="Combate">Combate</option>
+        <option value="Control de Energía Maldita">Control de Energía Maldita</option>
+        <option value="Teoría Maldita">Teoría Maldita</option>
+        <option value="Trabajo en Equipo">Trabajo en Equipo</option>
+        <option value="Misiones">Misiones</option>
+      </select></label>
+      <label><span>Orden</span><select id="rankingDirection"><option value="desc">Más alto primero</option><option value="asc">Más bajo primero</option></select></label>
+      <button type="button" id="rankingReset">Restablecer</button>
     </section>
     <div class="stats" id="stats"></div>
     <section class="students" id="students"></section>
@@ -622,6 +835,10 @@
       </div>
       <div class="sheet-body">
         <div class="academic-row" id="academicRow"></div>
+        <div class="private-record-section" id="privateRecordSection">
+          <h3 class="section-title">Información académica interna</h3>
+          <div class="extended-record" id="extendedRecord"></div>
+        </div>
         <h3 class="section-title">Evaluación académica</h3>
         <div class="score-list" id="scores"></div>
         <div class="overall"><small>Promedio general</small><b id="overall"></b></div>
@@ -839,10 +1056,145 @@ const professors = [
 ];
 
 
+const fixedCampusPosts = [
+  {
+    author:'Magatsuhi Gojo',
+    role:'Hechicero de Grado 2',
+    date:'29 de agosto · Año 2 DDC',
+    title:'',
+    body:'¿Saben? Ya me cansé de ser hechicero de Grado 3. Voy a intentar un poco; puede que suba a Grado 1 en un mes lol. Ahí los veo, muchachos.'
+  },
+  {
+    author:'Mai Zenin',
+    role:'Comunicado estudiantil',
+    date:'27 de agosto · Año 2 DDC',
+    title:'Mai Zenin',
+    body:'Atentos, estudiantes. Como estudiantes de hechicería, y viendo cómo llevan armas de fuego y artilugios de grado militar, debo informarles que, bajo la ley de hechicería, no debemos reportarlas ni tramitar una licencia, a diferencia del alkaryano promedio. Aunque seguramente a sus 14 años ya tengan un arma de fuego bajo la ley patria de “Todo alkaryano debe poder defenderse”, si la pierden o alguien de la URE, los Fujiwara o Seguridad Pública se la confisca, no es mi culpa y no soy responsable ni de su adquisición ni de su pérdida. Gracias.'
+  }
+];
+
+// Pool solicitado para respuestas simuladas del chat. Se usan los nombres del directorio
+// cuando el archivo externo mostraba una identidad alternativa (Kasumi Miwa / Kokichi Muta).
+const chatResponderNames = [
+  'Miwa','Kirara','Momo Nishimiya','Nobara','Finn Mertens','Kaito Yuki','Mai Zenin','Maki Zenin',
+  'Hakari','Inumaki Toge','Kokichi Muta','Noritoshi Kamo','Panda','Saki Rindo','Takuma Ino','Ururu Gojo','Yami Kurayami','Itadori Yuji','Magatsuhi Gojo'
+];
+const greetingReplies=['¡Hola!','¡Buenas!','Hey 👋','¡Saludos!','Holaaa','¿Qué tal?','¡Hey!'];
+const defaultChatMessages=[
+  {author:'Nobara',text:'¿Alguien va al comedor después de clase?'},
+  {author:'Panda',text:'Yo voy.'},
+  {author:'Momo Nishimiya',text:'¿El campo de entrenamiento sigue disponible hoy?'},
+  {author:'Finn Mertens',text:'Hasta donde sé, sí.'}
+];
+
+// Estado temporal de esta pestaña. No se guarda en ningún almacenamiento persistente.
+let activeSessionStudentName = null;
+let sessionCampusPosts = [];
+let sessionChatMessages = defaultChatMessages.map(m => ({...m}));
+
+function getLoggedStudent(){
+  return students.find(s=>s.name===activeSessionStudentName)||null;
+}
+function esc(value){
+  return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function getUserPosts(){
+  return sessionCampusPosts;
+}
+function renderCampusFeed(){
+  const feed=document.querySelector('#campusFeed'); if(!feed) return;
+  const userPosts=getUserPosts();
+  const all=[...userPosts,...fixedCampusPosts];
+  feed.innerHTML=all.map((p,i)=>`<article class="post-card ${i<userPosts.length?'post-user':''}">
+    <div class="post-top"><div><div class="post-author">${esc(p.author)}</div>${p.role?`<span class="post-role">${esc(p.role)}</span>`:''}</div><span class="post-date">${esc(p.date)}</span></div>
+    ${p.title?`<h3 class="post-title">${esc(p.title)}</h3>`:''}<div class="post-body">${esc(p.body)}</div>
+  </article>`).join('');
+}
+function publishCampusPost(){
+  const student=getLoggedStudent(); if(!student){ pendingProtectedView='inicio'; openLogin(); return; }
+  const body=document.querySelector('#newPostBody').value.trim(); if(!body) return;
+  const title=document.querySelector('#newPostTitle').value.trim();
+  sessionCampusPosts.unshift({author:student.name,role:`${yearLabel(student.year)} · ${gradeLabel(student.grade)}`,date:'Año 2 DDC · Publicación reciente',title,body});
+  sessionCampusPosts = sessionCampusPosts.slice(0,30);
+  document.querySelector('#newPostTitle').value='';document.querySelector('#newPostBody').value='';}
+function getChatMessages(){
+  return sessionChatMessages;
+}
+function saveChatMessages(msgs){
+  sessionChatMessages = msgs.slice(-80);
+}
+function renderChat(){
+  const box=document.querySelector('#chatMessages'); if(!box) return;
+  const me=getLoggedStudent();
+  const msgs=getChatMessages();
+  box.innerHTML=msgs.map(m=>`<div class="chat-msg ${me&&m.author===me.name?'self':''}"><b>${esc(m.author)}</b>${esc(m.text)}${m.time?`<span class="chat-time">${esc(m.time)}</span>`:''}</div>`).join('');
+  box.scrollTop=box.scrollHeight;
+}
+function looksLikeGreeting(input){
+  const s=input.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z\s]/g,' ').replace(/\s+/g,' ').trim();
+  return /^(hola+|hol+i*|hol|hello|sup|hallo|hey|buenas|saludos?)(\s|$)/.test(s);
+}
+function randomResponders(exclude,count){
+  const pool=chatResponderNames.filter(n=>n!==exclude);
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
+  return pool.slice(0,Math.min(count,pool.length));
+}
+function sendChatMessage(text){
+  const me=getLoggedStudent(); if(!me) return;
+  let msgs=getChatMessages();
+  msgs.push({author:me.name,text,time:'ahora'});saveChatMessages(msgs);renderChat();
+  if(looksLikeGreeting(text)){
+    const count=1+Math.floor(Math.random()*4);
+    randomResponders(me.name,count).forEach((name,i)=>{
+      setTimeout(()=>{let current=getChatMessages();current.push({author:name,text:greetingReplies[Math.floor(Math.random()*greetingReplies.length)],time:'ahora'});saveChatMessages(current);renderChat()},300+(i*380));
+    });
+  }
+}
+function bestAndLowestScore(student){
+  const entries=Object.entries(student.scores).sort((a,b)=>b[1]-a[1]);
+  return {best:entries[0],low:entries[entries.length-1]};
+}
+function specializationStatus(student){
+  if(student.year<=2) return 'Formación común';
+  if(student.year===3) return 'Pendiente de selección';
+  return 'No registrada';
+}
+function academicObservation(student){
+  const {best,low}=bestAndLowestScore(student);
+  if(Number(best[1])-Number(low[1])<1.1) return `Rendimiento equilibrado. Mantiene resultados consistentes en las áreas evaluadas; se recomienda continuar fortaleciendo ${low[0]}.`;
+  return `Destaca especialmente en ${best[0]} (${Number(best[1]).toFixed(1)}). Se recomienda reforzar ${low[0]} (${Number(low[1]).toFixed(1)}) para mantener una formación más equilibrada.`;
+}
+function renderPersonalProfile(student){
+  if(!student) return;
+  const pn=document.querySelector('#profileName'); if(!pn) return;
+  pn.textContent=student.name;
+  document.querySelector('#profileMeta').textContent=`${yearLabel(student.year)} · ${gradeLabel(student.grade)}`;
+  document.querySelector('#profileAverage').textContent=avg(student);
+  document.querySelector('#profileFacts').innerHTML=`
+    <div class="profile-fact"><small>Estado académico</small><b>${student.dead?'Registro conmemorativo':'Activo'}</b></div>
+    <div class="profile-fact"><small>Tutor</small><b>No registrado</b></div>
+    <div class="profile-fact"><small>Especialización</small><b>${specializationStatus(student)}</b></div>
+    <div class="profile-fact"><small>Año de ingreso</small><b>No registrado</b></div>`;
+  document.querySelector('#profileObservation').textContent=academicObservation(student);
+}
+function updateHomeSession(){
+  const student=getLoggedStudent();
+  const member=document.querySelector('#homeMember');
+  const privatePortal=document.querySelector('#privateStudentPortal');
+  const rankingToolbar=document.querySelector('#rankingToolbar');
+  if(member){member.classList.toggle('show',!!student); if(student){document.querySelector('#homeMemberName').textContent=student.name;document.querySelector('#homeMemberMeta').textContent=`${yearLabel(student.year)} · ${gradeLabel(student.grade)}`}}
+  if(privatePortal) privatePortal.classList.toggle('show',!!student);
+  if(rankingToolbar) rankingToolbar.classList.toggle('show',!!student);
+  if(student){renderPersonalProfile(student);renderCampusFeed();renderChat();}
+}
+
+
 const $ = s => document.querySelector(s);
 const list = $('#students');
 const search = $('#search');
 const stats = $('#stats');
+const rankingField = $('#rankingField');
+const rankingDirection = $('#rankingDirection');
 let activeFilter = 'all';
 const yearLabel = y => ({1:'Primer año',2:'Segundo año',3:'Tercer año',4:'Cuarto año',5:'Quinto año'})[y] || `${y}.º año`;
 const avg = s => (Object.values(s.scores).reduce((a,b)=>a+b,0)/Object.values(s.scores).length).toFixed(1);
@@ -864,8 +1216,7 @@ function normalizeName(value){
   return value.trim().toLocaleLowerCase('es');
 }
 function hasStudentSession(){
-  const saved=localStorage.getItem('alkaryaStudentSession');
-  return !!students.find(x=>x.name===saved);
+  return !!getLoggedStudent();
 }
 function updateRulesAccess(){
   const unlocked=hasStudentSession();
@@ -880,23 +1231,21 @@ function setSession(student){
     loginTrigger.textContent = 'Mi cuenta';
     accountName.textContent = student.name;
     accountBanner.classList.add('show');
-    localStorage.setItem('alkaryaStudentSession', student.name);
+    activeSessionStudentName = student.name;
   } else {
     sessionLabel.textContent = 'Portal Académico Oficial';
     loginTrigger.textContent = 'Acceso de estudiante';
     accountName.textContent = '';
     accountBanner.classList.remove('show');
-    localStorage.removeItem('alkaryaStudentSession');
-    if(location.hash==='#reglamento' || location.hash==='#facultad') setDirectoryView('directorio');
+    activeSessionStudentName = null;
+    if(location.hash==='#reglamento' || location.hash==='#facultad') setDirectoryView('inicio');
   }
   updateRulesAccess();
+  updateHomeSession();
 }
 function openLogin(){
-  const saved = localStorage.getItem('alkaryaStudentSession');
-  if(saved){
-    const s = students.find(x => x.name === saved);
-    if(s){ openStudent(s.name); return; }
-  }
+  const current = getLoggedStudent();
+  if(current){ openStudent(current.name); return; }
   loginError.textContent='';
   $('#studentLogin').value='';
   $('#studentPassword').value='';
@@ -930,21 +1279,22 @@ loginForm.addEventListener('submit', e => {
   }
 });
 $('#logoutBtn').addEventListener('click', () => { pendingProtectedView=null; setSession(null); });
-const savedSession = localStorage.getItem('alkaryaStudentSession');
-if(savedSession){
-  const s = students.find(x => x.name === savedSession);
-  if(s) setSession(s); else localStorage.removeItem('alkaryaStudentSession');
-}
 if($('#rulesLoginBtn')) $('#rulesLoginBtn').addEventListener('click',()=>{ pendingProtectedView='reglamento'; openLogin(); });
 updateRulesAccess();
 
 function render(){
   const q = search.value.trim().toLowerCase();
+  const field=rankingField?.value||'Promedio';
+  const direction=rankingDirection?.value||'desc';
   const filtered = students.filter(s => (activeFilter==='all' || String(s.year)===activeFilter) && s.name.toLowerCase().includes(q));
-  stats.innerHTML = `<span><strong>${filtered.length}</strong> estudiantes mostrados</span><span><strong>${students.filter(s=>s.dead).length}</strong> registros conmemorativos</span>`;
+  const valueOf=s=>field==='Promedio'?Number(avg(s)):Number(s.scores[field]??0);
+  filtered.sort((a,b)=>direction==='desc'?valueOf(b)-valueOf(a):valueOf(a)-valueOf(b));
+  const leader=filtered[0];
+  stats.innerHTML = `<span><strong>${filtered.length}</strong> estudiantes mostrados</span><span><strong>${students.filter(s=>s.dead).length}</strong> registros conmemorativos</span>${leader?`<span><strong>${esc(leader.name)}</strong> · ${direction==='desc'?'Mayor':'Menor'} ${esc(field)}: ${valueOf(leader).toFixed(1)}</span>`:''}`;
   if(!filtered.length){ list.innerHTML='<div class="empty">No se encontraron estudiantes con esos criterios.</div>'; return; }
   list.innerHTML = filtered.map((s,i)=>`<article class="student ${s.dead?'dead':''}" data-name="${encodeURIComponent(s.name)}">
       <div class="student-head"><div><h3>${s.name}</h3><div class="meta">${yearLabel(s.year)} · ${s.age ?? 'Edad reservada'}${s.age ? ' años' : ''}</div>${s.dead?'<div class="dead-label">Registro conmemorativo</div>':''}</div><span class="grade ${s.grade==='Especial'?'special':''}">${gradeLabel(s.grade)}</span></div>
+      ${field!=='Promedio'?`<div class="rank-focus">${esc(field)} · <strong>${valueOf(s).toFixed(1)}</strong></div>`:''}
       <div class="avg"><div><small>Promedio</small><br><strong>${avg(s)}</strong></div><div class="open">Ver expediente →</div></div>
     </article>`).join('');
   document.querySelectorAll('.student').forEach(card=>card.addEventListener('click',()=>openStudent(decodeURIComponent(card.dataset.name))));
@@ -961,6 +1311,13 @@ function openStudent(name){
     <div class="academic-box"><small>Edad</small><strong>${s.age ? s.age+' años' : 'Reservada'}</strong></div>
     <div class="academic-box"><small>Clasificación</small><strong>${gradeLabel(s.grade)}</strong></div>
     ${s.dead?'<div class="academic-box" style="grid-column:1/-1"><small>Estado del expediente</small><strong>Registro conmemorativo · Estudiante fallecida/o</strong></div>':''}`;
+  $('#privateRecordSection').classList.toggle('show',hasStudentSession());
+  $('#extendedRecord').innerHTML=`
+    <div class="record-box"><small>Tutor académico</small><strong>No registrado</strong></div>
+    <div class="record-box"><small>Especialización</small><strong>${specializationStatus(s)}</strong></div>
+    <div class="record-box"><small>Estado académico</small><strong>${s.dead?'Conmemorativo':'Activo'}</strong></div>
+    <div class="record-box"><small>Año de ingreso</small><strong>No registrado</strong></div>
+    <div class="record-observation"><small>Observación docente</small><p>${esc(academicObservation(s))}</p></div>`;
   $('#scores').innerHTML=Object.entries(s.scores).map(([k,v])=>`<div class="score-row"><div class="label">${k}</div><div class="bar"><span style="width:${Math.min(v,10)*10}%"></span></div><strong>${Number(v).toFixed(1)}</strong></div>`).join('');
   $('#overall').textContent=avg(s);
   $('#modal').classList.add('show');
@@ -974,6 +1331,9 @@ search.addEventListener('input',render);
 document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{
   document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); activeFilter=btn.dataset.filter; render();
 }));
+if(rankingField) rankingField.addEventListener('change',render);
+if(rankingDirection) rankingDirection.addEventListener('change',render);
+if($('#rankingReset')) $('#rankingReset').addEventListener('click',()=>{rankingField.value='Promedio';rankingDirection.value='desc';search.value='';activeFilter='all';document.querySelectorAll('.filter').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));render();});
 
 function renderFaculty(){
   const grid=$('#facultyGrid');
@@ -1016,11 +1376,11 @@ $('#closeFaculty').addEventListener('click',closeFaculty);
 $('#facultyModal').addEventListener('click',e=>{if(e.target.id==='facultyModal')closeFaculty()});
 
 function setDirectoryView(view, updateHash=true){
-  let target=['directorio','profesores','facultad','reglamento'].includes(view)?view:'directorio';
+  let target=['inicio','directorio','profesores','facultad','reglamento'].includes(view)?view:'inicio';
   if((target==='reglamento' || target==='facultad') && !hasStudentSession()){
     pendingProtectedView=target;
-    target='directorio';
-    if(updateHash) history.replaceState(null,'','#directorio');
+    target='inicio';
+    if(updateHash) history.replaceState(null,'','#inicio');
     openLogin();
   }
   document.querySelectorAll('.directory-view').forEach(v=>v.classList.toggle('active',v.id===target));
@@ -1040,10 +1400,11 @@ document.querySelectorAll('nav a[data-view]').forEach(a=>a.addEventListener('cli
   setDirectoryView(target);
 }));
 function viewFromHash(){
+  if(location.hash==='#directorio') return 'directorio';
   if(location.hash==='#profesores') return 'profesores';
   if(location.hash==='#facultad') return 'facultad';
   if(location.hash==='#reglamento') return 'reglamento';
-  return 'directorio';
+  return 'inicio';
 }
 document.querySelectorAll('.rules-index a').forEach(a=>a.addEventListener('click',e=>{
   e.preventDefault();
@@ -1054,6 +1415,19 @@ window.addEventListener('hashchange',()=>setDirectoryView(viewFromHash(),false))
 
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFaculty();});
 
+
+document.querySelectorAll('[data-go-view]').forEach(el=>el.addEventListener('click',e=>{
+  e.preventDefault();
+  const target=el.dataset.goView;
+  if((target==='facultad'||target==='reglamento')&&!hasStudentSession()){pendingProtectedView=target;openLogin();return;}
+  setDirectoryView(target);
+}));
+if(document.querySelector('#publishPostBtn')) document.querySelector('#publishPostBtn').addEventListener('click',publishCampusPost);
+if(document.querySelector('#chatForm')) document.querySelector('#chatForm').addEventListener('submit',e=>{e.preventDefault();const input=document.querySelector('#chatInput');const value=input.value.trim();if(!value)return;input.value='';sendChatMessage(value)});
+updateHomeSession();
+
+
+if($('#profileOpenRecord')) $('#profileOpenRecord').addEventListener('click',e=>{const me=getLoggedStudent();if(me){e.preventDefault();openStudent(me.name);}});
 render();
 renderFaculty();
 setDirectoryView(viewFromHash(),false);
