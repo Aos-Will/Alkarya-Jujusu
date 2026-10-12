@@ -1581,5 +1581,44 @@ render();
 renderFaculty();
 setDirectoryView(viewFromHash(),false);
 </script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { 
+    getFirestore, 
+    collection, 
+    addDoc, 
+    deleteDoc,
+    doc,
+    onSnapshot, 
+    query, 
+    orderBy, 
+    limit, 
+    serverTimestamp 
+  } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  // Tus credenciales oficiales de Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyAiaL45sD06j-NLKdk4fMoXPyDI47U1So0",
+    authDomain: "jujutsu-high-ed9c5.firebaseapp.com",
+    projectId: "jujutsu-high-ed9c5",
+    storageBucket: "jujutsu-high-ed9c5.firebasestorage.app",
+    messagingSenderId: "1030202688048",
+    appId: "1:1030202688048:web:9081dbc316ff928bad63f5"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  window.db = db;
+  window.collection = collection;
+  window.addDoc = addDoc;
+  window.deleteDoc = deleteDoc;
+  window.doc = doc;
+  window.onSnapshot = onSnapshot;
+  window.query = query;
+  window.orderBy = orderBy;
+  window.limit = limit;
+  window.serverTimestamp = serverTimestamp;
+</script>
 </body>
 </html>
