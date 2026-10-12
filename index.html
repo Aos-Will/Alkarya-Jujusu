@@ -147,7 +147,7 @@
     .login-body p{margin:0 0 20px;color:var(--muted);font-family:ui-sans-serif,system-ui;font-size:13px;line-height:1.5}
     .login-field{display:grid;gap:6px;margin-top:14px;font-family:ui-sans-serif,system-ui}
     .login-field label{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:700}
-    .login-field input{width:100%;border:1px solid var(--line);background:#fff;padding:11px 12px;border-radius:3px;outline:none}
+    .login-field input,.login-field select{width:100%;border:1px solid var(--line);background:#fff;padding:11px 12px;border-radius:3px;outline:none}
     .login-field input:focus{border-color:var(--red);box-shadow:0 0 0 2px rgba(121,31,43,.08)}
     .login-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
     .login-actions button{padding:9px 13px;border-radius:3px;cursor:pointer;border:1px solid var(--line);background:var(--panel)}
@@ -431,7 +431,7 @@
         <div class="home-section-title private-title"><div><h2>Calendario académico</h2><p>Fechas internas del segundo periodo.</p></div></div>
         <section class="calendar-grid">
           <article class="calendar-card"><time>12 SEP</time><div><b>Evaluación práctica · 3.er año</b><p>Pruebas supervisadas de control, combate y respuesta en campo.</p></div></article>
-          <article class="calendar-card"><time>18 SEP</time><div><b>Revisión médica general</b><p>Evaluación preventiva por el Centro Médico Ieiri para estudiantes activos.</p></div></article>
+          <article class="calendar-card"><time>18 SEP</time><div><b>Revisión médica general</b><p>Evaluación preventiva por el Centro Médico Ieiri for estudiantes activos.</p></div></article>
           <article class="calendar-card"><time>23 SEP</time><div><b>Torneo interno de entrenamiento</b><p>Encuentros no clasificatorios dentro de barreras de seguridad.</p></div></article>
           <article class="calendar-card"><time>28 SEP</time><div><b>Feria de Facultades</b><p>Presentación de departamentos y especializaciones para estudiantes de 3.er año.</p></div></article>
           <article class="calendar-card"><time>04 OCT</time><div><b>Jornada de investigación</b><p>Exposición de proyectos, archivos y trabajos de campo de los departamentos.</p></div></article>
@@ -897,8 +897,68 @@
     </article>
   </div>
 
+  <!-- Modal Añadir Estudiante -->
+  <div class="modal" id="addStudentModal" role="dialog" aria-modal="true" aria-labelledby="addStudentTitle">
+    <section class="login-sheet" style="width:min(520px,100%)">
+      <div class="login-body">
+        <h2 id="addStudentTitle">Añadir Nuevo Estudiante</h2>
+        <p>Registra un nuevo alumno en la base de datos de Alkarya.</p>
+        <form id="addStudentForm">
+          <div class="login-field"><label>Nombre completo</label><input id="newStudName" required placeholder="Ej. Tsumiki Fushiguro"></div>
+          <div class="login-field"><label>Año escolar (1 - 5)</label><input id="newStudYear" type="number" min="1" max="5" value="1" required></div>
+          <div class="login-field"><label>Edad</label><input id="newStudAge" type="number" min="10" max="100" value="16"></div>
+          <div class="login-field"><label>Grado</label>
+            <select id="newStudGrade">
+              <option value="3">Grado 3</option>
+              <option value="2">Grado 2</option>
+              <option value="1">Grado 1</option>
+              <option value="4">Grado 4</option>
+              <option value="Especial">Grado Especial</option>
+            </select>
+          </div>
+          <div class="login-field"><label>Combate (0-10)</label><input id="newStudCombate" type="number" step="0.1" min="0" max="10" value="7.5"></div>
+          <div class="login-field"><label>Control de Energía Maldita (0-10)</label><input id="newStudEnergia" type="number" step="0.1" min="0" max="10" value="7.5"></div>
+          <div class="login-field"><label>Teoría Maldita (0-10)</label><input id="newStudTeoria" type="number" step="0.1" min="0" max="10" value="7.5"></div>
+          <div class="login-field"><label>Trabajo en Equipo (0-10)</label><input id="newStudEquipo" type="number" step="0.1" min="0" max="10" value="8.0"></div>
+          <div class="login-field"><label>Misiones (0-10)</label><input id="newStudMisiones" type="number" step="0.1" min="0" max="10" value="8.0"></div>
+          <div class="login-error" id="addStudError"></div>
+          <div class="login-actions">
+            <button type="button" id="cancelAddStudent">Cancelar</button>
+            <button class="primary" type="submit">Guardar Estudiante</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal Añadir Profesor -->
+  <div class="modal" id="addProfessorModal" role="dialog" aria-modal="true" aria-labelledby="addProfTitle">
+    <section class="login-sheet" style="width:min(520px,100%)">
+      <div class="login-body">
+        <h2 id="addProfTitle">Añadir Nuevo Profesor</h2>
+        <p>Registra un nuevo docente en el directorio de la facultad.</p>
+        <form id="addProfessorForm">
+          <div class="login-field"><label>Nombre completo</label><input id="newProfName" required placeholder="Ej. Kento Nanami"></div>
+          <div class="login-field"><label>Asignatura / Materia</label><input id="newProfSubject" required placeholder="Ej. Finanzas y Táctica"></div>
+          <div class="login-field"><label>Estatura</label><input id="newProfHeight" placeholder="Ej. 1.84 m" value="1.75 m"></div>
+          <div class="login-field"><label>Rango / Clasificación</label><input id="newProfRank" placeholder="Ej. Grado 1" value="Grado 1"></div>
+          <div class="login-field"><label>Situación / Estado</label><input id="newProfStatus" placeholder="Ej. En servicio · Alkarya" value="En servicio · Alkarya"></div>
+          <div class="login-field"><label>Título institucional</label><input id="newProfTitleInput" placeholder="Ej. Profesor titular" value="Profesor de Alkarya"></div>
+          <div class="login-field"><label>Resumen breve</label><input id="newProfSummary" placeholder="Descripción breve del docente" value="Especialista en su área académica."></div>
+          <div class="login-field"><label>Biografía detallada</label><textarea id="newProfBio" style="width:100%;border:1px solid var(--line);background:#fff;padding:11px 12px;border-radius:3px;outline:none;min-height:80px;" placeholder="Biografía..."></textarea></div>
+          <div class="login-field"><label>Áreas de enseñanza (separadas por coma)</label><input id="newProfAreas" placeholder="Teoría, Práctica, Combate" value="Teoría, Práctica"></div>
+          <div class="login-error" id="addProfError"></div>
+          <div class="login-actions">
+            <button type="button" id="cancelAddProfessor">Cancelar</button>
+            <button class="primary" type="submit">Guardar Profesor</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
 <script>
-// Datos base de estudiantes
+// Datos base de estudiantes (Sin Draco ni Daisuke)
 const defaultStudents = [
   {name:'Yuki Zenin', year:3, age:15, grade:'3', scores:{'Combate':7.8,'Control de Energía Maldita':6.7,'Teoría Maldita':7.4,'Trabajo en Equipo':8.8,'Misiones':9.0}},
   {name:'Haru Zenin', year:3, age:15, grade:'3', scores:{'Combate':6.9,'Control de Energía Maldita':7.7,'Teoría Maldita':7.2,'Trabajo en Equipo':8.8,'Misiones':8.8}},
@@ -944,11 +1004,8 @@ const defaultStudents = [
   {name:'Hayaka Zenin', year:4, age:20, grade:'2', scores:{'Combate':8.9,'Control de Energía Maldita':8.9,'Teoría Maldita':9.2,'Trabajo en Equipo':8.0,'Misiones':9.1}}
 ];
 
-// Fuente inicial local: Firebase será la fuente de verdad cuando termine de cargar.
 let students = JSON.parse(localStorage.getItem('alkarya_students')) || defaultStudents;
 
-// Perfil persistente de Dirección. Gojo no es un estudiante y por eso se guarda
-// en su propio documento de Firestore en lugar de intentar buscarlo en `students`.
 const defaultGojoProfile = {
   name: 'Gojo Satoru',
   grade: 'Especial',
@@ -971,8 +1028,7 @@ function studentDocId(name){
   return encodeURIComponent(name);
 }
 
-
-const professors = [
+const defaultProfessors = [
   {
     name:'Camila Fujiwara',
     subject:'Táctica y Operaciones de Campo',
@@ -1089,6 +1145,8 @@ const professors = [
   }
 ];
 
+let professors = JSON.parse(localStorage.getItem('alkarya_professors')) || defaultProfessors;
+
 const defaultCampusPosts = [
   {
     author:'Magatsuhi Gojo',
@@ -1122,7 +1180,6 @@ const defaultChatMessages=[
 
 let sessionChatMessages = JSON.parse(localStorage.getItem('alkarya_chat')) || defaultChatMessages;
 
-// Control de sesión e identidad
 let activeSessionStudentName = localStorage.getItem('alkarya_session_user') || null;
 let isUserAdmin = localStorage.getItem('alkarya_is_admin') === 'true';
 
@@ -1144,7 +1201,7 @@ function getLoggedUser(){
 }
 
 function esc(value){
-  return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;Д'}[c]));
+  return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
 function getUserPosts(){
@@ -1228,6 +1285,10 @@ function renderPersonalProfile(user){
         <div class="admin-field"><label>Especialización:</label><select id="directorEditSpecialization"><option value="">-- Sin especialización --</option>${specializationsList.map(x=>`<option value="${x}" ${user.specialization===x?'selected':''}>${x}</option>`).join('')}</select></div>
         ${Object.keys(user.scores||defaultGojoProfile.scores).map(key=>`<div class="admin-field"><label>${key} (0 - 10):</label><input type="number" step="0.1" min="0" max="10" id="directorScore_${key.replace(/\s+/g, '_')}" value="${user.scores[key]??10}"></div>`).join('')}
         <button type="button" class="admin-save-btn" onclick="saveDirectorProfile()">Guardar datos de Dirección en Firebase</button>
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button type="button" class="admin-save-btn" style="background:#791f2b;" onclick="openAddStudentModal()">+ Añadir estudiante</button>
+          <button type="button" class="admin-save-btn" style="background:#a78445;" onclick="openAddProfessorModal()">+ Añadir profesor</button>
+        </div>
       </div>` : '';
   }
 }
@@ -1341,7 +1402,6 @@ loginForm.addEventListener('submit', e => {
   const usernameInput = $('#studentLogin').value.trim();
   const passwordInput = $('#studentPassword').value.trim();
 
-  // Comprobación cuenta real Gojo Satoru
   if(usernameInput.toLowerCase() === 'gojo satoru' && passwordInput === 'Thestrongest123'){
     setSession({ name: 'Gojo Satoru', grade: 'Especial', year: 5 }, true);
     closeLogin();
@@ -1355,7 +1415,6 @@ loginForm.addEventListener('submit', e => {
     return;
   }
 
-  // Comprobación estudiantes
   const candidate = students.find(s => normalizeName(s.name) === normalizeName(usernameInput));
   if(!candidate){
     loginError.textContent='Credenciales inválidas o estudiante no encontrado.';
@@ -1415,7 +1474,6 @@ function openStudent(name){
   $('#scores').innerHTML=Object.entries(s.scores).map(([k,v])=>`<div class="score-row"><div class="label">${k}</div><div class="bar"><span style="width:${Math.min(v,10)*10}%"></span></div><strong>${Number(v).toFixed(1)}</strong></div>`).join('');
   $('#overall').textContent=avg(s);
 
-  // Panel de edición de Gojo Satoru (Admin)
   const adminContainer = $('#adminEditContainer');
   if(isUserAdmin){
     adminContainer.innerHTML = `
@@ -1468,7 +1526,6 @@ window.saveDirectorProfile = async function(){
 window.saveAdminStudentChanges = async function(studentName){
   const student = students.find(x => x.name === studentName);
 
-  // Gojo es el administrador/director, no un elemento de `students`.
   if(!student && studentName === 'Gojo Satoru'){
     const gojo = cloneData(defaultGojoProfile);
     gojo.grade = $('#adminEditGrade')?.value || gojo.grade;
@@ -1507,7 +1564,6 @@ window.saveAdminStudentChanges = async function(studentName){
     }
   });
 
-  // Copia local inmediata para que el cambio no desaparezca mientras Firebase responde.
   localStorage.setItem('alkarya_students', JSON.stringify(students));
 
   const pending = JSON.parse(localStorage.getItem('alkarya_pending_student_changes') || '{}');
@@ -1540,10 +1596,99 @@ window.saveAdminStudentChanges = async function(studentName){
   }
 }
 
+// Funciones para añadir estudiantes y profesores desde el panel de Satoru
+function openAddStudentModal(){
+  $('#addStudentModal').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeAddStudentModal(){
+  $('#addStudentModal').classList.remove('show');
+  if(!$('#modal').classList.contains('show') && !$('#loginModal').classList.contains('show') && !$('#facultyModal').classList.contains('show')) document.body.style.overflow='';
+}
+
+function openAddProfessorModal(){
+  $('#addProfessorModal').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeAddProfessorModal(){
+  $('#addProfessorModal').classList.remove('show');
+  if(!$('#modal').classList.contains('show') && !$('#loginModal').classList.contains('show') && !$('#facultyModal').classList.contains('show')) document.body.style.overflow='';
+}
+
+if($('#cancelAddStudent')) $('#cancelAddStudent').addEventListener('click', closeAddStudentModal);
+if($('#cancelAddProfessor')) $('#cancelAddProfessor').addEventListener('click', closeAddProfessorModal);
+$('#addStudentModal').addEventListener('click', e => { if(e.target.id==='addStudentModal') closeAddStudentModal(); });
+$('#addProfessorModal').addEventListener('click', e => { if(e.target.id==='addProfessorModal') closeAddProfessorModal(); });
+
+$('#addStudentForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const name = $('#newStudName').value.trim();
+  if(!name) return;
+  const newStudent = {
+    name,
+    year: parseInt($('#newStudYear').value) || 1,
+    age: parseInt($('#newStudAge').value) || 16,
+    grade: $('#newStudGrade').value,
+    scores: {
+      'Combate': parseFloat($('#newStudCombate').value) || 7.5,
+      'Control de Energía Maldita': parseFloat($('#newStudEnergia').value) || 7.5,
+      'Teoría Maldita': parseFloat($('#newStudTeoria').value) || 7.5,
+      'Trabajo en Equipo': parseFloat($('#newStudEquipo').value) || 8.0,
+      'Misiones': parseFloat($('#newStudMisiones').value) || 8.0
+    }
+  };
+
+  students.push(newStudent);
+  localStorage.setItem('alkarya_students', JSON.stringify(students));
+
+  try {
+    await window.firebaseReady;
+    await window.setDoc(window.doc(window.db, 'students', studentDocId(newStudent.name)), cloneData(newStudent));
+  } catch(err){
+    console.error('Error guardando estudiante en Firebase:', err);
+  }
+
+  closeAddStudentModal();
+  render();
+  alert(`¡Estudiante ${name} añadido con éxito!`);
+});
+
+$('#addProfessorForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const name = $('#newProfName').value.trim();
+  if(!name) return;
+  const newProf = {
+    name,
+    subject: $('#newProfSubject').value.trim() || 'Asignatura general',
+    height: $('#newProfHeight').value.trim() || '1.75 m',
+    rank: $('#newProfRank').value.trim() || 'Grado 1',
+    status: $('#newProfStatus').value.trim() || 'En servicio · Alkarya',
+    away: false,
+    title: $('#newProfTitleInput').value.trim() || 'Profesor',
+    summary: $('#newProfSummary').value.trim() || 'Docente de Alkarya.',
+    bio: $('#newProfBio').value.trim() || 'Docente acreditado por la Escuela Metropolitana de Hechicería de Alkarya.',
+    areas: $('#newProfAreas').value.split(',').map(s=>s.trim()).filter(Boolean)
+  };
+
+  professors.push(newProf);
+  localStorage.setItem('alkarya_professors', JSON.stringify(professors));
+
+  try {
+    await window.firebaseReady;
+    await window.setDoc(window.doc(window.db, 'professors', studentDocId(newProf.name)), cloneData(newProf));
+  } catch(err){
+    console.error('Error guardando profesor en Firebase:', err);
+  }
+
+  closeAddProfessorModal();
+  renderFaculty();
+  alert(`¡Profesor ${name} añadido con éxito!`);
+});
+
 function closeModal(){ $('#modal').classList.remove('show'); document.body.style.overflow=''; }
 $('#close').addEventListener('click',closeModal);
 $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeLogin();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeLogin();closeAddStudentModal();closeAddProfessorModal();}});
 search.addEventListener('input',render);
 document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{
   document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); activeFilter=btn.dataset.filter; render();
