@@ -1511,16 +1511,35 @@ window.saveAdminStudentChanges = async function(studentName){
   // Copia local inmediata para que el cambio no desaparezca mientras Firebase responde.
   localStorage.setItem('alkarya_students', JSON.stringify(students));
 
+  // Guardado local inmediato. Esto evita que el cambio desaparezca aunque Firebase tarde.
+  const pending = JSON.parse(localStorage.getItem('alkarya_pending_student_changes') || '{}');
+  pending[studentDocId(student.name)] = cloneData(student);
+  localStorage.setItem('alkarya_pending_student_changes', JSON.stringify(pending));
+
   try {
-    if(!window.firebaseReady) throw new Error('Firebase todavía no ha terminado de cargar.');
     await window.firebaseReady;
-    await window.setDoc(window.doc(window.db, 'students', studentDocId(student.name)), cloneData(student));
-    alert('¡Cambios guardados correctamente en Firebase!');
+    if(!window.db || !window.setDoc || !window.doc) throw new Error('Firebase no está disponible.');
+
+    await window.setDoc(
+      window.doc(window.db, 'students', studentDocId(student.name)),
+      cloneData(student),
+      {merge:true}
+    );
+
+    delete pending[studentDocId(student.name)];
+    localStorage.setItem('alkarya_pending_student_changes', JSON.stringify(pending));
+    localStorage.setItem('alkarya_students', JSON.stringify(students));
+
+    alert('¡Cambios guardados permanentemente en Firebase!');
     render();
     openStudent(studentName);
   } catch(error) {
-    console.error('Error guardando estudiante:', error);
-    alert('Los cambios quedaron guardados localmente, pero Firebase rechazó el guardado. Revisa la consola.');
+    console.error('Error guardando estudiante en Firebase:', error);
+    // El cambio permanece en este navegador y queda marcado para volver a intentarse.
+    localStorage.setItem('alkarya_students', JSON.stringify(students));
+    alert('⚠️ El cambio quedó guardado en este navegador, pero Firebase no aceptó el guardado. Revisa las reglas de Firestore y la consola (F12).');
+    render();
+    openStudent(studentName);
   }
 }
 
@@ -1652,7 +1671,17 @@ try{
  const studentsRef=collection(db,'students');
  const studentSnap=await getDocs(studentsRef);
  if(studentSnap.empty){const source=JSON.parse(localStorage.getItem('alkarya_students'))||defaultStudents;await Promise.all(source.map(x=>setDoc(doc(db,'students',studentDocId(x.name)),cloneData(x))));}
- onSnapshot(studentsRef,snap=>{const data=snap.docs.map(x=>x.data());if(data.length){students=data;localStorage.setItem('alkarya_students',JSON.stringify(data));render();updateHomeSession();}},e=>console.error('Firebase students:',e));
+ onSnapshot(studentsRef,snap=>{
+   const data=snap.docs.map(x=>x.data());
+   if(data.length){
+     const pending=JSON.parse(localStorage.getItem('alkarya_pending_student_changes') || '{}');
+     const byId=new Map(data.map(x=>[studentDocId(x.name),x]));
+     Object.entries(pending).forEach(([id,value])=>byId.set(id,value));
+     students=Array.from(byId.values());
+     localStorage.setItem('alkarya_students',JSON.stringify(students));
+     render();updateHomeSession();
+   }
+ },e=>console.error('Firebase students:',e));
  const gojoRef=doc(db,'directors','gojo-satoru'),gojoSnap=await getDoc(gojoRef);
  if(gojoSnap.exists()){gojoProfile={...defaultGojoProfile,...gojoSnap.data()};localStorage.setItem('alkarya_gojo_profile',JSON.stringify(gojoProfile));}else await setDoc(gojoRef,cloneData(gojoProfile));
  onSnapshot(gojoRef,snap=>{if(snap.exists()){gojoProfile={...defaultGojoProfile,...snap.data()};localStorage.setItem('alkarya_gojo_profile',JSON.stringify(gojoProfile));if(isUserAdmin)updateHomeSession();}},e=>console.error('Firebase director:',e));
